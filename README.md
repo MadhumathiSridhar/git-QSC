@@ -1,2 +1,0 @@
-# git-QSC
-Hi bbbbbb
