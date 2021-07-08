@@ -1,0 +1,910 @@
+﻿<Application x:Class="QSC_Test_Automation.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"         
+             StartupUri="Splash_Screen.xaml" ShutdownMode="OnExplicitShutdown" Exit="Application_Exit" Startup="Application_Startup">
+    <Application.Resources>
+
+        <!-- Control Template 1 for Button-->
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate1">
+            <Border x:Name="ButtonBorder1"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="85" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3" >
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplatemy">
+            <Border x:Name="ButtonBorder1"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="120" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3" >
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <!-- Style 1 for Button-->
+        <Style x:Key="ButtonStyle1" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate1}">
+            </Setter>
+        </Style>
+
+        <Style x:Key="ButtonStylemy" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplatemy}">
+            </Setter>
+        </Style>
+
+
+
+        <!-- Control Template 2 for Button-->
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate2">
+            <Border x:Name="ButtonBorder2"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="120" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3" >
+
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder2" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder2" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder2" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder2" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- Style 2 for Button-->
+        <Style x:Key="ButtonStyle2" TargetType="Button" >
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate2}">
+            </Setter>
+        </Style>
+
+        <!-- Control Template 3 for Button-->
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate3">
+            <Border x:Name="ButtonBorder3"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="70" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate3CopyReplace">
+            <Border x:Name="ButtonBorder3"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="100" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate3Abort">
+            <Border x:Name="ButtonBorder3"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="50" Height="20" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                        <Setter TargetName="ButtonBorder3" 
+                                    Property="Background" 
+                                    Value="#FF465A7D"/>
+                        <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+
+                    </Trigger>
+                <!--<Trigger Property="IsEnabled" 
+                                 Value="false">
+
+
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>-->
+
+                <!--</Trigger>-->
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate8">
+            <Border x:Name="ButtonBorder3"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF9CAAC1" Padding="2" Width="30" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background"
+                                    Value="#FF9CAAC1"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate9">
+            <Border x:Name="ButtonBorder9"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF9CAAC1" Padding="2" Width="70" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder9" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder9" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder9" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder9" 
+                                    Property="Background"
+                                    Value="#FF9CAAC1"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate10">
+            <Border x:Name="ButtonBorder3"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="20" Height="20" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background"
+                                    Value="#FF9CAAC1"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+       
+        
+        <!-- Style 3 for Button-->
+        <Style x:Key="ButtonStyle3" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate3}">
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle3CopyReplace" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate3}">
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle8" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate8}">
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle9" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate9}">
+            </Setter>
+        </Style>
+        <Style x:Key="ButtonStyle10" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate10}">
+            </Setter>
+        </Style>
+        <Style x:Key="Abortbutton" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate3Abort}">
+            </Setter>
+        </Style>
+
+        <!-- Control Template 4 for Button-->
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate4">
+            <Border x:Name="ButtonBorder4"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="220" Height="24" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder4" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder4" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder4" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder4" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <!-- Style 4 for Button-->
+        <Style x:Key="ButtonStyle4" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate4}">
+            </Setter>
+        </Style>
+
+        <!-- Control Template 3 for Button-->
+        <ControlTemplate TargetType="Button" x:Key="ButtonTemplate5">
+            <Border x:Name="ButtonBorder3"
+                    BorderBrush="Black" 
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="90" Height="23" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black"  TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3">
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background" 
+                                    Value="#FFB9D1EA"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" 
+                                 Value="False">
+
+
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="TextBlock.Foreground"
+                                    Value="#FFADADAD"/>
+                    <Setter TargetName="ButtonBorder3" 
+                                    Property="Background"
+                                    Value="#FF465A7D"/>
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+
+        
+
+
+        <!-- Style 3 for Button-->
+        <Style x:Key="ButtonStyle5" TargetType="Button">
+            <Setter Property="Template" Value="{StaticResource ButtonTemplate5}">
+            </Setter>
+        </Style>
+
+
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="ExecuteIconButton">
+            <Border x:Name="ButtonBorder1" 
+                    BorderThickness="2"  BorderBrush="LightGray" Background="#FF9CAAC1"
+                   Padding="2" Width="80"  Height="31" TextBlock.TextAlignment="Center" TextBlock.FontWeight="ExtraBold" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="5" >
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="true">
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="PauseIconButton">
+            <Border x:Name="ButtonBorder1" 
+                    BorderThickness="2"  BorderBrush="LightGray" Background="#FF9CAAC1"
+                   Padding="2" Width="80"  Height="31" TextBlock.TextAlignment="Center" TextBlock.FontWeight="ExtraBold" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="5" >
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </Trigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=Btn_Pause, Path=IsEnabled}" Value="True"/>
+                        <Condition Binding="{Binding ElementName=btn_Execute, Path=IsEnabled}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=btn_Cancel, Path=IsEnabled}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                  
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </MultiDataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="CancelIconButton">
+            <Border x:Name="ButtonBorder1" 
+                    BorderThickness="2"  BorderBrush="LightGray" Background="#FF9CAAC1"
+                   Padding="2" Width="80"  Height="31" TextBlock.TextAlignment="Center" TextBlock.FontWeight="ExtraBold" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="5" >
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </Trigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=Btn_Pause, Path=IsEnabled}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=btn_Execute, Path=IsEnabled}" Value="True"/>
+                        <Condition Binding="{Binding ElementName=btn_Cancel, Path=IsEnabled}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </MultiDataTrigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=Btn_Pause, Path=IsEnabled}" Value="True"/>
+                        <Condition Binding="{Binding ElementName=btn_Execute, Path=IsEnabled}" Value="False"/>
+                        <Condition Binding="{Binding ElementName=btn_Cancel, Path=IsEnabled}" Value="True"/>
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </MultiDataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="DelayIconButton">
+            <Border x:Name="ButtonBorder1" 
+                    BorderThickness="2"  BorderBrush="LightGray" Background="#FF9CAAC1"
+                   Padding="2" Width="80"  Height="31" TextBlock.TextAlignment="Center" TextBlock.FontWeight="ExtraBold" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="5" >
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </Trigger>
+                <MultiDataTrigger>
+                    <MultiDataTrigger.Conditions>
+                        <Condition Binding="{Binding ElementName=btn_Execute, Path=IsEnabled}" Value="True"/>
+                        <Condition Binding="{Binding ElementName=Btn_Execution_Delay, Path=IsEnabled}" Value="True"/>
+                        <!--<Condition Binding="{Binding ElementName=btn_Cancel, Path=IsEnabled}" Value="false"/>
+                        <Condition Binding="{Binding ElementName=Btn_Execution_Delay, Path=IsPressed}" Value="true"/>
+                        <Condition Binding="{Binding ElementName=Btn_Execution_Delay, Path=IsEnabled}" Value="true"/>-->
+
+
+
+                    </MultiDataTrigger.Conditions>
+                    <Setter TargetName="ButtonBorder1"  Property="Background" Value="#FFC0CAD9" />
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="0" Color="WhiteSmoke" Opacity="1" BlurRadius="14" />
+                        </Setter.Value>
+                    </Setter>
+                    <Setter TargetName="ButtonBorder1"  Property="BorderBrush" Value="white" />
+                </MultiDataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="IconButton1">
+            <Border x:Name="ButtonBorder1"
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="50" Height="35" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3" >
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="Background" 
+                                    Value="#75a3a3"/>
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+        <ControlTemplate TargetType="{x:Type Button}" x:Key="IconButton2">
+            <Border x:Name="ButtonBorder1"
+                    BorderThickness="1" 
+                    Background="#FF465A7D" Padding="2" Width="36" Height="55" TextBlock.TextAlignment="Center" TextBlock.FontWeight="Black" TextBlock.FontStyle="Normal" TextBlock.FontSize="12" CornerRadius="3" >
+
+                <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" 
+                                 Value="true">
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="Background" 
+                                    Value="#75a3a3"/>
+                    <Setter TargetName="ButtonBorder1" 
+                                    Property="TextBlock.Foreground" 
+                                    Value="Black"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+
+        <Style TargetType="TextBox" x:Key="Rampvalue">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush Stretch="None">
+                                <VisualBrush.Visual>
+                                    <TextBlock Text="Ramp Value" Foreground="Black" FontSize="12"  FontStyle="Italic" TextAlignment="Left" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="{x:Null}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush Stretch="None">
+                                <VisualBrush.Visual>
+                                    <TextBlock Text="Ramp Value" Foreground="Black" FontStyle="Italic" TextAlignment="Left" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsFocused}" Value="White">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush Stretch="None">
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="TextBox" x:Key="Commandvalue">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush Stretch="None">
+                                <VisualBrush.Visual>
+                                    <TextBlock Text="Telnet Command" Foreground="Black" FontSize="12"  FontStyle="Italic" TextAlignment="Left" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="{x:Null}">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush Stretch="None">
+                                <VisualBrush.Visual>
+                                    <TextBlock Text="Telnet Command" Foreground="Black" FontStyle="Italic" TextAlignment="Left" />
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsFocused}" Value="White">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <VisualBrush Stretch="None">
+                            </VisualBrush>
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="#050505"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="TextBlockStyle2" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="#050505"/>
+            <Setter Property="Margin" Value="5"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#FFF0F0F0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style x:Key="TextBlockStyle_QATprop" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="#050505"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="TextBlockHeaderStyle" TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Black"/>
+            <Setter Property="FontStyle" Value="Normal"/>
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="AnimatedSwitch" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="Background" Value="Blue" />
+            <Setter Property="BorderBrush" Value="#EAEAEB" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Viewbox Stretch="Uniform">
+                            <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                                <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                                <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                                <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0.5,0,0.5"/>
+                                <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.3">
+                                    <Ellipse.RenderTransform>
+                                        <TranslateTransform X="0" Y="0" />
+                                    </Ellipse.RenderTransform>
+                                    <Ellipse.BitmapEffect>
+                                        <DropShadowBitmapEffect Softness="0.1" ShadowDepth="0.7" Direction="270" Color="#BBBBBB"/>
+                                    </Ellipse.BitmapEffect>
+                                </Ellipse>
+                            </Canvas>
+                        </Viewbox>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#52D468" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#41C955" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <ColorAnimation Storyboard.TargetProperty="Background.Color" To="Blue" Duration="0:0:0.2" />
+                                            <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#EAEAEB" Duration="0:0:0.2" />
+                                            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                                <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                                <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                            </DoubleAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <LinearGradientBrush x:Key="CheckedBlue" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FF285AB3" Offset="0" />
+            <GradientStop Color="#FF4184EC" Offset="0.5" />
+            <GradientStop Color="#FF558BED" Offset="0.5" />
+            <GradientStop Color="#FF7DACF0" Offset="1" />
+        </LinearGradientBrush>
+        <!--<LinearGradientBrush x:Key="CheckedOrange" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFCA6A13" Offset="0" />
+            <GradientStop Color="#FFF67D0C" Offset="0.2" />
+            <GradientStop Color="#FFFE7F0C" Offset="0.2" />
+            <GradientStop Color="#FFFA8E12" Offset="0.5" />
+            <GradientStop Color="#FFFF981D" Offset="0.5" />
+            <GradientStop Color="#FFFCBC5A" Offset="1" />
+        </LinearGradientBrush>-->
+        <LinearGradientBrush x:Key="CheckedGreen" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="Green" Offset="0" />
+            <GradientStop Color="Green" Offset="0.2" />
+            <GradientStop Color="Green" Offset="0.2" />
+            <GradientStop Color="Green" Offset="0.5" />
+            <GradientStop Color="Green" Offset="0.5" />
+            <GradientStop Color="Green" Offset="1" />
+        </LinearGradientBrush>
+        <!--<SolidColorBrush x:Key="CheckedOrangeBorder" Color="#FF8E4A1B" />-->
+        <SolidColorBrush x:Key="CheckedGreenBorder" Color="Green" />
+        
+        <SolidColorBrush x:Key="CheckedBlueBorder" Color="#FF143874" />
+        <Style x:Key="OrangeSwitchStyle" TargetType="{x:Type CheckBox}">
+            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.WindowTextBrushKey}}" />
+            <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
+            <Setter Property="Template"> 
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CheckBox}">
+                        <ControlTemplate.Resources>
+                            <Storyboard x:Key="OnChecking">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="30" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                            <Storyboard x:Key="OnUnchecking">
+                                <DoubleAnimationUsingKeyFrames BeginTime="00:00:00" Storyboard.TargetName="slider" Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)">
+                                    <SplineDoubleKeyFrame KeyTime="00:00:00.1000000" Value="0" />
+                                </DoubleAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </ControlTemplate.Resources>
+                        <DockPanel x:Name="dockPanel">
+                            <ContentPresenter SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" ContentTemplate="{TemplateBinding ContentTemplate}" RecognizesAccessKey="True" VerticalAlignment="Center" />
+                            <Grid>
+                                <Border x:Name="BackgroundBorder" BorderBrush="#FF939393" BorderThickness="1" CornerRadius="3" Height="20" Width="60">
+                                    <Border.Background>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,0">
+                                            <GradientStop Color="#FFB5B5B5" Offset="0" />
+                                            <GradientStop Color="#FFDEDEDE" Offset="0.1" />
+                                            <GradientStop Color="#FFEEEEEE" Offset="0.5" />
+                                            <GradientStop Color="#FFFAFAFA" Offset="0.5" />
+                                            <GradientStop Color="#FFFEFEFE" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition />
+                                            <ColumnDefinition />
+                                        </Grid.ColumnDefinitions>
+                                        <Ellipse x:Name="Off" Width="14" Height="14" Stroke="#FF7A7A7A" StrokeThickness="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <Line x:Name="On" X1="0" Y1="0" X2="0" Y2="14" Stroke="#FF7A7A7A" StrokeThickness="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                    </Grid>
+                                </Border>
+                                <Border BorderBrush="#FF939393" HorizontalAlignment="Left" x:Name="slider" Width="30" Height="20" BorderThickness="1" CornerRadius="3" RenderTransformOrigin="0.5,0.5" Margin="0">
+                                    <Border.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                                            <SkewTransform AngleX="0" AngleY="0" />
+                                            <RotateTransform Angle="0" />
+                                            <TranslateTransform X="0" Y="0" />
+                                        </TransformGroup>
+                                    </Border.RenderTransform>
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                            <GradientStop Color="#FFF0F0F0" Offset="0" />
+                                            <GradientStop Color="#FFCDCDCD" Offset="0.1" />
+                                            <GradientStop Color="#FFFBFBFB" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </DockPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OnUnchecking}" x:Name="OnUnchecking_BeginStoryboard" />
+                                </Trigger.ExitActions>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard Storyboard="{StaticResource OnChecking}" x:Name="OnChecking_BeginStoryboard" />
+                                </Trigger.EnterActions>
+                                <Setter TargetName="On" Property="Stroke" Value="White" />
+                                <Setter TargetName="Off" Property="Stroke" Value="White" />
+                                <!-- Change Orange or Blue color here -->
+                                <Setter TargetName="BackgroundBorder" Property="Background" Value="{StaticResource CheckedGreen}" />
+                                <Setter TargetName="BackgroundBorder" Property="BorderBrush" Value="{StaticResource CheckedGreenBorder}" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <!-- ToDo: Add Style for Isenabled == False -->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

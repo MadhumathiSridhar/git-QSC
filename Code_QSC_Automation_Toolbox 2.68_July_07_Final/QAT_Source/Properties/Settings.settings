@@ -1,0 +1,285 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="QSC_Test_Automation.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DevicePassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Aaa111*</Value>
+    </Setting>
+    <Setting Name="DeviceUsername" Type="System.String" Scope="User">
+      <Value Profile="(Default)">QATadmin</Value>
+    </Setting>
+    <Setting Name="CompareFirmwareVersion" Type="System.String" Scope="User">
+      <Value Profile="(Default)">8.0</Value>
+    </Setting>
+    <Setting Name="TelnetUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">root</Value>
+    </Setting>
+    <Setting Name="TelnetPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">decline</Value>
+    </Setting>
+    <Setting Name="Designversion" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Qsyscheckbox" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Qsystemppath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TesterName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Category" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Restorecheckbox" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AfterTestCaseFails" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AutomationPauses" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AfterExecutionCompletion" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ApplicationCrashes" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ReportEmailID" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="TestCaseFailsCount" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="upgradeedr" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Path" Type="System.String" Scope="User">
+      <Value Profile="(Default)"> E:\test</Value>
+    </Setting>
+    <Setting Name="QATPrefix" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Bank Control,Input,-Output,*Bank Control,=BANK_CONTROL_INPUT ;Bank Control,Output,Input,*Bank Control,=BANK_CONTROL_INPUT_OUTPUT ;Bank Control,Output,-Input,*Bank Control,=BANK_CONTROL_OUTPUT ;Bank Select,Input,*Bank Select,=BANK_SELECT_INPUT ;Bank Select,Output,*Bank Select,=BANK_SELECT_OUTPUT ;Channel,*Channel,=CHANNEL ; GPIO,Input,-Out,*GPIO,=GPIO_INPUT ;GPIO,Out,-Input,*GPIO,=GPIO_OUTPUT ;Input,-Output,*Input,-Bank Control,-Bank Select,-GPIO,=INPUT ;Input,Output,*Input,-Bank Control,-Bank Select,-GPIO,=INPUT_OUTPUT ;Output,-Input,*Output,-Bank Control,-Bank Select,-GPIO,=OUTPUT ;Output,Input,*Output,-Bank Control,-Bank Select,-GPIO,=OUTPUT_INPUT ;Tap,*Tap,=TAP ;</Value>
+    </Setting>
+    <Setting Name="YouTubeLink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://www.youtube.com/channel/UC-R9BKbnhoDAK2KHG9Jy5sg</Value>
+    </Setting>
+    <Setting Name="ServerPathBDR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\1usbrsqadbd01\\SQA_QAT_Server</Value>
+    </Setting>
+    <Setting Name="ReportlinkBDR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://1usbrsqadbd01/SQA_QAT_Server/</Value>
+    </Setting>
+    <Setting Name="ReleaseFolderBDR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\1usbrsqadbd01\SQA_QAT_Server\QATsetup</Value>
+    </Setting>
+    <Setting Name="currentserver" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ServerPathCM" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\1uscmsqadbd01\\SQA_QAT_Server</Value>
+    </Setting>
+    <Setting Name="ReportlinkCM" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://1uscmsqadbd01/SQA_QAT_Server/</Value>
+    </Setting>
+    <Setting Name="ReleaseFolderCM" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\1uscmsqadbd01\SQA_QAT_Server\QATsetup</Value>
+    </Setting>
+    <Setting Name="ServerSwitch" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ServerPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\1uscmsqadbd01\\SQA_QAT_Server</Value>
+    </Setting>
+    <Setting Name="Reportlink" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://1uscmsqadbd01/SQA_QAT_Server/</Value>
+    </Setting>
+    <Setting Name="ReleaseFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\1uscmsqadbd01\SQA_QAT_Server\QATsetup</Value>
+    </Setting>
+    <Setting Name="ReportlinkOthers" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://1uscmsqadbd01/SQA_QAT_Server/</Value>
+    </Setting>
+    <Setting Name="ReleaseFolderOthers" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\1uscmsqadbd01\SQA_QAT_Server\QATsetup</Value>
+    </Setting>
+    <Setting Name="ReportEmailSubject" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="SandboxPathBDR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\1usbrsqadbd01\\SQA_QAT_Sandbox</Value>
+    </Setting>
+    <Setting Name="Bypass_time" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="Bypass_checkvalue" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ServerPathJAS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\qscserver\QSC_Manual\TestDesigns</Value>
+    </Setting>
+    <Setting Name="ReportlinkJAS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://qscserver/reports/</Value>
+    </Setting>
+    <Setting Name="ReleaseFolderJAS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\qscserver\QSC_Manual\QATsetup</Value>
+    </Setting>
+    <Setting Name="SandboxPathJAS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\qscserver\Sandbox</Value>
+    </Setting>
+    <Setting Name="ReportlinkBDR_sandbox" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://1usbrsqadbd01/SQA_QAT_Server/?DB=Sandbox</Value>
+    </Setting>
+    <Setting Name="ReportlinkJAS_sandbox" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://qscserver/reports/?DB=Sandbox</Value>
+    </Setting>
+    <Setting Name="ReportlinkCM_sandbox" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://1uscmsqadbd01/SQA_QAT_Server/?DB=Sandbox</Value>
+    </Setting>
+    <Setting Name="SandboxPathCM" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\1uscmsqadbd01\\SQA_QAT_Sandbox</Value>
+    </Setting>
+    <Setting Name="TelnetPreference" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Netpairlist" Type="System.String" Scope="User">
+      <Value Profile="(Default)">I/O-22,DPA4.2Q,DPA4.3Q,DPA4.5Q,I/O-Frame,I/O-Frame8S,PS-400H,PS-800H,PS-1600H,PS-1650H,TSC-8,TSC-7,CXD4.3Q,PTZ-12x72,PTZ-20x60,CXD4.2Q,I/O-USB-Bridge,TSC-47-G2,TSC-3,PS-400G,I/O-510i,CXD4.5Q,VS3x2MD,CXD8.8Q,DCIO,DCIO-H,TSC-7t,TSC-7w, I/O-8 Flex,CXD8.4Q,TSC-116-G2</Value>
+    </Setting>
+    <Setting Name="email_link" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="MailIdSwitch" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Execution_dev_mode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Core_Password_Skip" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Autoevent_wait_time" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">1000</Value>
+    </Setting>
+    <Setting Name="Ssh_Command_Execution_timeout" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="PcapFilter" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">portrange=&amp;notport=false&amp;disablemcast=false&amp;pktlen=&amp;capsize=100</Value>
+    </Setting>
+    <Setting Name="Dev_mode_ssh_delay" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">10</Value>
+    </Setting>
+    <Setting Name="Deploy_time_upperlimit" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">300</Value>
+    </Setting>
+    <Setting Name="FirmwareTime_upperlimit" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">600</Value>
+    </Setting>
+    <Setting Name="API_key_JAS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eyJrIjoiV1JzN1pjNloxeG5PenlRbjVBUlNiSXdraEZ2bjk1blkiLCJuIjoiUUFUX0tleSIsImlkIjoxfQ==</Value>
+    </Setting>
+    <Setting Name="API_key_CM" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eyJrIjoieUR1Y2ZzMDJWNEVSdlV0NXhZeVN5YklTYmQ5UUhpdE8iLCJuIjoiYWRtaW4iLCJpZCI6MX0=</Value>
+    </Setting>
+    <Setting Name="API_key_BDR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eyJrIjoiUGFrS1htRFVrVWduMUVWN3JjUnptV1g2UE9ja2JMWm8iLCJuIjoiYWRtaW4iLCJpZCI6MX0=</Value>
+    </Setting>
+    <Setting Name="BrowserPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DigestFirmwareVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8.3</Value>
+    </Setting>
+    <Setting Name="NewDepolySchemeFirmwareVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">8.4</Value>
+    </Setting>
+    <Setting Name="GrafanaPlotly" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Delay_after_connect" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">10000</Value>
+    </Setting>
+    <Setting Name="AddreportLink" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="OthersHostMachineName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">gurutn</Value>
+    </Setting>
+    <Setting Name="ReleaseFolderBLR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\inbgdsqrem1-w10\SQA_QAT_Server\QATsetup</Value>
+    </Setting>
+    <Setting Name="SandboxPathBLR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\inbgdsqrem1-w10\SQA_QAT_Sandbox</Value>
+    </Setting>
+    <Setting Name="ReportlinkBLR_sandbox" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://inbgdsqrem1-w10/SQA_QAT_Server/?DB=Sandbox</Value>
+    </Setting>
+    <Setting Name="ServerPathBLR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ReportlinkBLR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://inbgdsqrem1-w10/SQA_QAT_Server/</Value>
+    </Setting>
+    <Setting Name="API_key_BLR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eyJrIjoiMXBqV3pKTmZ3VVlTeGRUaVgyVm1CZ1plamJLTmd2RDciLCJuIjoiUUFUX0JhbmdhbG9yZSIsImlkIjoxfQ==</Value>
+    </Setting>
+    <Setting Name="API_key_Others" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eyJrIjoiNlVaOUlNOUhJWm5pTGhuVDZjVHdmTVlXUkRMTEVzZ3IiLCJuIjoiVGVzdCIsImlkIjoxfQ==</Value>
+    </Setting>
+    <Setting Name="DeployMonitor_TotaltimeOnly" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="NewPeripheralFirmwareVersion" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">9.2</Value>
+    </Setting>
+    <Setting Name="ConstringJAS" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=nodata;user=sa;password=nodata</Value>
+    </Setting>
+    <Setting Name="ConstringCM" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=nodata;user=sa;password=nodata</Value>
+    </Setting>
+    <Setting Name="ConstringBDR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=nodata;user=sa;password=nodata</Value>
+    </Setting>
+    <Setting Name="RunnerDB_SANDBOX" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">RunnerSandboxTestDB</Value>
+    </Setting>
+    <Setting Name="DesignerDB_SANDBOX" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DesignerSandboxTestDB</Value>
+    </Setting>
+    <Setting Name="availableservers" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">OTHERS</Value>
+    </Setting>
+    <Setting Name="GrafanaDB_SANDBOX" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GrafanaSandboxTestDB</Value>
+    </Setting>
+    <Setting Name="DebugMode" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ServerPathOthers" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">\\joyce\QATserver</Value>
+    </Setting>
+    <Setting Name="GrafanaDB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">GrafanaTestDB</Value>
+    </Setting>
+    <Setting Name="RunnerDB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">RunnerTestDB</Value>
+    </Setting>
+    <Setting Name="DesignerDB" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">DesignerTestDB</Value>
+    </Setting>
+    <Setting Name="ConstringBLR" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=nodata;user=sa;password=nodata</Value>
+    </Setting>
+    <Setting Name="QREMreflectLink" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">qa.reflect.qsc.com</Value>
+    </Setting>
+    <Setting Name="QREMUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">guru.tn@qsc.com</Value>
+    </Setting>
+    <Setting Name="QREMPassword" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Jasmin@123</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

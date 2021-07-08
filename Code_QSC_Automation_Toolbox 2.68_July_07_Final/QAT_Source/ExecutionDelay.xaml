@@ -1,0 +1,28 @@
+﻿<Window x:Class="QSC_Test_Automation.ExecutionDelay"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ExecutionDelay" Height="193" Width="314" WindowStartupLocation="CenterScreen" WindowState="Normal" VisualTextRenderingMode="Auto" VisualTextHintingMode="Animated" ResizeMode="NoResize" Background="#FF9CAAC1" AllowsTransparency="False" Icon="Images/Final_QAT_Icon.ico" KeyUp="btn_delay_keyup" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PresentationFramework.Royale;V3.0.0.0;31bf3856ad364e35;component\themes\royale.normalcolor.xaml" />
+                <ResourceDictionary Source="TreeViewDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <!--<Border BorderBrush="Gray" BorderThickness="1" Height="153" HorizontalAlignment="Left" Margin="6,4,0,0" Name="border1" VerticalAlignment="Top" Width="291">-->
+        <Grid Height="127" Width="272">
+        <TextBox ToolTip="Enter Delay" MaxLength="5" Height="23" Text="{Binding ExecutionDelay,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Margin="0,44,148,0" Name="txt_Delay" VerticalAlignment="Top" Width="100" PreviewTextInput="Txt_Delay_PreviewTextInput" PreviewKeyDown="txt_Delay_PreviewKeyDown" PreviewKeyUp="TextBox_PreviewKeyUp">
+            <TextBox.ContextMenu>
+                <ContextMenu Visibility="Collapsed" />
+            </TextBox.ContextMenu>
+        </TextBox>
+        <ComboBox Name="cmb_Delay" Margin="0,43,24,60" Height="23" ItemsSource="{Binding DelayValues}" HorizontalAlignment="Right" Width="100" SelectedItem="{Binding ExecutionDelayTime,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                          
+            </ComboBox>
+            <Button Content="OK" HorizontalAlignment="Left" Margin="50,93,0,0" Name="btn_Ok" VerticalAlignment="Top"  Click="Btn_Ok_Click"  Foreground="White" Focusable="False" Style="{StaticResource ButtonStyle3}" />
+            <Button Content="Cancel" Margin="0,93,48,0" Name="btn_Cancel" VerticalAlignment="Top"  Click="Btn_Cancel_Click" HorizontalAlignment="Right"  Foreground="White" Focusable="False" Style="{StaticResource ButtonStyle3}" />
+            <Label Content="Enter the Delay for Execution :" Height="28" Foreground="Black" HorizontalAlignment="Left" Margin="6,0,0,0" Name="label1" VerticalAlignment="Top" FontSize="13" />
+        </Grid>
+    <!--</Border>-->
+</Window>

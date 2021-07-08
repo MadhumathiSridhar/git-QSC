@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QSC_Test_Automation", "QSC_Test_Automation.csproj", "{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}"
+EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "QSC_Automation_Toolbox", "..\QAT_Installer\QSC_Automation_Toolbox\QSC_Automation_Toolbox.isproj", "{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9} = {C03D454A-BFF8-4C58-B64D-023A8A3F26B9}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		CD_ROM|x86 = CD_ROM|x86
+		Debug|x86 = Debug|x86
+		DVD-5|x86 = DVD-5|x86
+		Release|x86 = Release|x86
+		SingleImage|x86 = SingleImage|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.CD_ROM|x86.ActiveCfg = Release|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.CD_ROM|x86.Build.0 = Release|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.Debug|x86.ActiveCfg = Debug|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.Debug|x86.Build.0 = Debug|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.DVD-5|x86.ActiveCfg = Debug|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.DVD-5|x86.Build.0 = Debug|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.Release|x86.ActiveCfg = Release|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.Release|x86.Build.0 = Release|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.SingleImage|x86.ActiveCfg = Release|x86
+		{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}.SingleImage|x86.Build.0 = Release|x86
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.CD_ROM|x86.ActiveCfg = CD_ROM
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.CD_ROM|x86.Build.0 = CD_ROM
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.Debug|x86.ActiveCfg = DVD-5
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.Debug|x86.Build.0 = DVD-5
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.DVD-5|x86.ActiveCfg = DVD-5
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.DVD-5|x86.Build.0 = DVD-5
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.Release|x86.ActiveCfg = SingleImage
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.Release|x86.Build.0 = SingleImage
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.SingleImage|x86.ActiveCfg = SingleImage
+		{4DE04A71-F4AC-4B54-88BE-D0119B3D9F1F}.SingleImage|x86.Build.0 = SingleImage
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

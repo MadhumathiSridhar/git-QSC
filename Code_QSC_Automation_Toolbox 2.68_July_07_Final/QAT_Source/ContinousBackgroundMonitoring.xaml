@@ -1,0 +1,1220 @@
+﻿<Window x:Class="QSC_Test_Automation.ContinousBackgroundMonitoring"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QSC_Test_Automation"
+        mc:Ignorable="d"
+        Title="QAT-Background Monitor [build2.68]" Name="CBM" ContentRendered="CBM_ContentRendered" Height="auto" ScrollViewer.CanContentScroll="True" Width="1200"  ResizeMode="CanResize" WindowState="Normal" WindowStartupLocation="CenterScreen" Icon="Images/Final_QAT_Icon.ico" KeyDown="cbm_keydown">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PresentationFramework.Royale;V3.0.0.0;31bf3856ad364e35;component\themes\royale.normalcolor.xaml" />
+                <ResourceDictionary Source="TreeViewDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <!-- TextBlockStyle-->
+            <Style x:Key="TextBlockStyle" TargetType="TextBlock">
+                <Setter Property="FontWeight" Value="Black"/>
+                <Setter Property="FontStyle" Value="Normal"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="FontFamily" Value="Consolas"/>
+                <Setter Property="Foreground" Value="#050505"/>
+                <Setter Property="Margin" Value="5"/>
+            </Style>
+            <!--Watermark Iteration-->
+            <Style TargetType="TextBox" x:Key="txboxWM1">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="0" Foreground="Black" TextAlignment="Left"  />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="" Foreground="Black" TextAlignment="Left"  />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--Watermark wait time-->
+            <Style TargetType="TextBox" x:Key="txboxWM2">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="Wait Time" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--Watermark Freq-->
+            <Style TargetType="TextBox" x:Key="txboxWM3">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="Freq" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+            <!--Watermark Inputs-->
+            <Style TargetType="TextBox" x:Key="txboxWM4">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="Inputs" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                        <Setter Property="Background">
+                            <Setter.Value>
+                                <VisualBrush Stretch="None">
+                                    <VisualBrush.Visual>
+                                        <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" />
+                                    </VisualBrush.Visual>
+                                </VisualBrush>
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <Style TargetType="{x:Type TextBox}">
+                <Setter Property="Validation.ErrorTemplate">
+                    <Setter.Value>
+                        <ControlTemplate  >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <!--<Border BorderBrush="#FFCB2E2E" BorderThickness="0" Background="#11FF0000" IsHitTestVisible="False" x:Name="errorBorder"/>-->
+                                <AdornedElementPlaceholder x:Name="placeholder"  Grid.Row="1"/>
+                                <!--<Popup Name="mypopup"  AllowsTransparency="True" HorizontalAlignment="Left"  PopupAnimation="None" Placement="Bottom" 
+                                   PlacementTarget="{Binding ElementName=errorBorder}" IsOpen="{Binding ElementName=placeholder, Path=AdornedElement.IsKeyboardFocused , Mode=OneWay}" LayoutTransform="{Binding ElementName=placeholder, Path=AdornedElement.IsKeyboardFocused , Mode=OneWay}">-->
+
+                                <StackPanel Orientation="Horizontal">
+                                    <Polygon  VerticalAlignment="Center" Points="0,4 4,0 4,8" Fill="#FFCB2E2E" Stretch="Fill" Stroke="#FFCB2E2E"  
+                                      StrokeThickness="0" />
+                                    <Border Background="#FFCB2E2E" CornerRadius="4" Padding="4">
+                                        <TextBlock HorizontalAlignment="Center" Foreground="White" FontWeight="Medium" Margin="2,0,0,0"  
+                                                   Text="{Binding ElementName=placeholder, Path=AdornedElement.(Validation.Errors)[0].ErrorContent, Mode=OneWay}" />
+                                    </Border>
+                                </StackPanel>
+                                <!--</Popup>-->
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+
+                <!--<Style.Triggers>
+                    <Trigger Property="Validation.HasError" Value="True">
+                        <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                    </Trigger>
+                </Style.Triggers>-->
+            </Style>
+            
+            <!--VerifyControlContentDataTemplare-->
+            <HierarchicalDataTemplate x:Key="VerifyControlContentDataTemplare1" x:Shared="False">
+                <GroupBox BorderBrush="Black" Margin="-10,10,0,0" Name="Error_Gbox" Grid.Row="5" Height="130">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Get Value from Active Design</TextBlock>
+                    </GroupBox.Header>
+                    <Grid Background="#FF9CAAC1" x:Name="ControlActionGrid" Margin="20,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="150" />
+                            <ColumnDefinition Width="30" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel x:Name="stack_ComponentType" Grid.Column="0" Grid.Row="0" Margin="5,5,0,5" Background="#FF9CAAC1" >
+                            <Label Content="Component Type" x:Name="lbl_CompType" HorizontalAlignment="Left" Height="26" Margin="-2,-8,0,0" Width="137"/>
+                            <ComboBox x:Name="cmb_ComponentType"  SelectionChanged="cmb_ComponentType_SelectionChanged" ItemsSource="{Binding cmb_ComponentType,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding cmb_ComponentTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="25">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Grid.Row="0" x:Name="stack_ComponentName" Margin="5,5,0,5" Background="#FF9CAAC1" >
+                            <Label Content="Component Name" x:Name="lbl_CompName" HorizontalAlignment="Left" Height="26" Width="137" Margin="-2,-8,0,0"/>
+                            <ComboBox Height="25" x:Name="cmb_ComponentName"  DropDownOpened="cmb_ComponentName_DropDownOpened" DropDownClosed="cmb_ComponentName_DropDownClosed" ItemsSource="{Binding ComponentNameList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ComponentNameSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Grid.Row="0" x:Name="stack_Property" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Control" x:Name="lbl_Property" HorizontalAlignment="Stretch" Height="26" Margin="-2,-8,10,0"/>
+                            <ComboBox Height="25" x:Name="cmb_Property" DropDownOpened="cmb_Property_DropDownOpened" ItemsSource="{Binding PropertyList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding PropertySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Grid.Row="0" x:Name="stack_ChannelSelection" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Channel Selection" x:Name="lbl_channelSelection" HorizontalAlignment="Left"  Height="26" Margin="-4,-6,0,0" />
+                            <ComboBox x:Name="cmb_channelSelection" Height="25" Margin="-2,-2,0,0" ItemsSource="{Binding cmb_Channel,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding cmb_ChannelEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding cmb_ChannelSelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="4" Grid.Row="0" x:Name="stack_SettingType" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Value Type" x:Name="lbl_SettingType" HorizontalAlignment="Left" Height="26" Margin="-4,-6,0,0" />
+                            <ComboBox x:Name="cmb_SettingType" Height="25" Margin="-2,-2,0,0" ItemsSource="{Binding InputSelectionComboList}" IsEnabled="{Binding InputSelectionEnabled}" SelectedItem="{Binding InputSelectionComboSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="5" Grid.Row="0" x:Name="stack_Value" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Value" x:Name="lbl_value" HorizontalAlignment="Stretch" Height="26" Margin="-2,-8,10,0"/>
+                            <TextBox Height="25" x:Name="cmb_Value" Text="{Binding PropertyInitialValueSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged,ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" PreviewTextInput="cmb_Value_PreviewTextInput" PreviewKeyDown="cmb_Value_PreviewKeyDown" IsEnabled="{Binding PropertyInitialValueSelectedItemEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </StackPanel>
+
+
+                        <StackPanel Grid.Column="6" Grid.Row="0" x:Name="stack_UpperLimit" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Upper Limit" x:Name="lbl_UpperLimit" HorizontalAlignment="Left" Height="26" Margin="-2,-8,0,0"/>
+                            <TextBox Height="25" x:Name="cmb_UpperLimit"  Text="{Binding MaximumLimit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" IsEnabled="{Binding MaxLimitIsEnabled}" PreviewKeyDown="cmb_UpperLimit_PreviewKeyDown" PreviewTextInput="cmb_UpperLimit_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="7" Grid.Row="0" x:Name="stack_LowerLimit" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Lower Limit" x:Name="lbl_LowerLimit" HorizontalAlignment="Left" Height="26" Margin="-2,-8,0,0"/>
+                            <TextBox Height="25" ContextMenu="{x:Null}" x:Name="cmb_LowerLimit"  Text="{Binding MinimumLimit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" IsEnabled="{Binding MinLimitIsEnabled}" PreviewKeyDown="cmb_LowerLimit_PreviewKeyDown" PreviewTextInput="cmb_LowerLimit_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="0" Grid.Row="1" x:Name="Loop" Margin="2,10,0,5" Background="#FF9CAAC1" Width="auto" HorizontalAlignment="Left" >
+                            <CheckBox Content="Loop" x:Name="chk_Loop" HorizontalAlignment="Left" Height="26" Margin="10,0,0,0" Visibility="{Binding chk_LoopEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsChecked="{Binding chk_LoopChecked,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Grid.Row="1" x:Name="LoopStart" Margin="2,5,0,5" Background="#FF9CAAC1" Width="auto" HorizontalAlignment="Left" >
+                            <Grid x:Name="chk_LoopStart" Height="22" Visibility="{Binding chk_LoopStartIsEnabled}" Background="White" Width="150">
+                                <TextBox Text="{Binding txtchk_LoopStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="cmb_LowerLimit_PreviewKeyDown" PreviewTextInput="cmb_LowerLimit_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="None">
+                                                                <VisualBrush.Visual>
+                                                                    <TextBlock Text="Loop Start" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" Width="70" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="None">
+                                                                <VisualBrush.Visual>
+                                                                    <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" Width="70" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <Trigger Property="Validation.HasError" Value="True">
+                                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                                </Trigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                    <TextBox.ContextMenu>
+                                        <ContextMenu Visibility="Collapsed" />
+                                    </TextBox.ContextMenu>
+                                </TextBox>
+                            </Grid>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Grid.Row="1" x:Name="LoopEnd" Margin="2,5,0,5" Background="#FF9CAAC1" Width="auto" HorizontalAlignment="Left" >
+                            <Grid x:Name="LoopEnd_Grd" Height="22" Visibility="{Binding chk_LoopEndIsEnabled}" Background="White" Width="150">
+                                <TextBox x:Name="chk_LoopEnd" Text="{Binding txtchk_LoopEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  PreviewKeyDown="cmb_LowerLimit_PreviewKeyDown" PreviewTextInput="cmb_LowerLimit_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="None">
+                                                                <VisualBrush.Visual>
+                                                                    <TextBlock Text="Loop End" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" Width="70" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="None">
+                                                                <VisualBrush.Visual>
+                                                                    <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" Width="70" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <Trigger Property="Validation.HasError" Value="True">
+                                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                                </Trigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                    <TextBox.ContextMenu>
+                                        <ContextMenu Visibility="Collapsed" />
+                                    </TextBox.ContextMenu>
+                                </TextBox>
+                            </Grid>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" Grid.Row="1" x:Name="LoopIncrement" Margin="2,5,0,5" Background="#FF9CAAC1" Width="auto" HorizontalAlignment="Left" >
+                            <Grid x:Name="chk_LoopIncreament" Height="22" Visibility="{Binding chk_LoopIncreamentIsEnabled}" Background="White" Width="150">
+
+                                <TextBox Text="{Binding txtchk_LoopIncreament, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" PreviewKeyDown="cmb_LowerLimit_PreviewKeyDown" PreviewTextInput="cmb_LowerLimit_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                    <TextBox.Style>
+                                        <Style TargetType="TextBox">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="None">
+                                                                <VisualBrush.Visual>
+                                                                    <TextBlock Text="Loop Increament" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" Width="70" HorizontalAlignment="Left" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                                                    <Setter Property="Background">
+                                                        <Setter.Value>
+                                                            <VisualBrush Stretch="None">
+                                                                <VisualBrush.Visual>
+                                                                    <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" Width="70" />
+                                                                </VisualBrush.Visual>
+                                                            </VisualBrush>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <Trigger Property="Validation.HasError" Value="True">
+                                                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}" />
+                                                </Trigger>
+
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBox.Style>
+                                    <TextBox.ContextMenu>
+                                        <ContextMenu Visibility="Collapsed" />
+                                    </TextBox.ContextMenu>
+                                </TextBox>
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+                </GroupBox>
+            </HierarchicalDataTemplate>
+            <!-- Error Handling-->
+            <HierarchicalDataTemplate x:Key="ErrorHandling" x:Shared="False" >
+                <!--<StackPanel x:Name="ErrorHandlingstack" Background="#FF9CAAC1"  Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" >-->
+                <GroupBox BorderBrush="Black" Name="Error_Gbox" Grid.Row="5" Height="140">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Error Handling</TextBlock>
+                    </GroupBox.Header>
+                    <StackPanel Margin="20,-2,0,12">
+                        <RadioButton  Height="17" x:Name="continue_Rbtn" Margin="20,10,0,0" HorizontalAlignment="Left" Width="220" VerticalAlignment="Top" Content="Pause at error state" IsChecked="{Binding PauseatErrorstate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                        <RadioButton  Height="17" x:Name="pause_Rbtn" Margin="20,10,0,0" VerticalAlignment="Top" Content="Continue Testing"  HorizontalAlignment="Left" Width="206" IsChecked="{Binding ContinueTesting,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Grid.Row="0" Content="Rerun the failed TestCase" Height="28" HorizontalAlignment="Left" Margin="57,-2,0,8" x:Name="Rerun_chkbox" />
+                        <Grid  Height="20" Width="300" Margin="238,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="ErrorHandlingText1" Style="{StaticResource txboxWM1}" IsEnabled="{Binding ReRunFailedTestCaseEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding ReRunFailedTestCase ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   FontSize="12" PreviewTextInput="RerunthefailedTestCase_textBox_PreviewTextInput" PreviewKeyDown="RerunthefailedTestCase_textBox_PreviewKeyDown" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </Grid>
+                        <!--<Grid  Height="20" Width="105" Margin="351,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="ErrorHandlingText2" Style="{StaticResource txboxWM2}"  Height="20" Width="105" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"/>
+                        </Grid>
+                        <ComboBox x:Name="ErrorHandlingCombo" Height="20" Width="50" Margin="470,-45,0,0" HorizontalAlignment="Left"/>-->
+                    </StackPanel>
+                </GroupBox>
+
+                <!--</StackPanel>-->
+            </HierarchicalDataTemplate>
+
+            <!-- Data Template for Set Telnet Device Checkbox in Test Case -->
+            <HierarchicalDataTemplate x:Key="TelnetDeviceCheckBoxtDataTemplate" x:Shared="False">
+                <Grid>
+                    <CheckBox IsChecked="{Binding TelnetIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="{Binding ItemDeviceName}" Margin="2,2,2,2"/>
+                </Grid>
+            </HierarchicalDataTemplate>
+
+
+            <!-- CVMError Handling-->
+            <HierarchicalDataTemplate x:Key="CVMErrorHandling" x:Shared="False" >
+                <!--<StackPanel x:Name="ErrorHandlingstack" Margin="10,10,0,0" Background="#FF9CAAC1"  Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" >-->
+                <GroupBox BorderBrush="Black"  Name="Error_Gbox" Grid.Row="5" Height="140">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Error Handling</TextBlock>
+                    </GroupBox.Header>
+                    <StackPanel Margin="20,10,0,0">
+                        <RadioButton  Height="20" x:Name="continue_Rbtn" Margin="20,10,0,0" HorizontalAlignment="Left" Width="220.5" VerticalAlignment="Top" Content="Pause at error state" IsChecked="{Binding CVMPauseatErrorstate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                        <RadioButton  Height="20" x:Name="pause_Rbtn" Margin="20,10,0,0" VerticalAlignment="Top" Content="Continue Testing"  HorizontalAlignment="Left" Width="206.5" IsChecked="{Binding CVMContinueTesting,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Grid.Row="0" Content="Rerun the failed TestCase" Height="28" HorizontalAlignment="Left" Margin="57,10,0,8" x:Name="Rerun_chkbox" />
+                        <Grid  Height="20" Width="300" Margin="238,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="ErrorHandlingText1" Style="{StaticResource txboxWM1}" IsEnabled="{Binding CVMReRunFailedTestCaseEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding CVMReRunFailedTestCase ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"   FontSize="12" PreviewTextInput="RerunthefailedTestCase_textBox_PreviewTextInput" PreviewKeyDown="RerunthefailedTestCase_textBox_PreviewKeyDown" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </Grid>
+                        <!--<Grid  Height="20" Width="105" Margin="351,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="ErrorHandlingText2" Style="{StaticResource txboxWM2}"  Height="20" Width="105" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"/>
+                        </Grid>
+                        <ComboBox x:Name="ErrorHandlingCombo" Height="20" Width="50" Margin="470,-45,0,0" HorizontalAlignment="Left"/>-->
+                    </StackPanel>
+                </GroupBox>
+
+                <!--</StackPanel>-->
+            </HierarchicalDataTemplate>
+
+            <!-- Inventory Error Handling-->
+            <HierarchicalDataTemplate x:Key="InventoryErrorHandling" x:Shared="False" >
+                <!--<StackPanel x:Name="ErrorHandlingstack" Margin="10,10,0,0" Background="#FF9CAAC1"  Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" >-->
+                <GroupBox BorderBrush="Black"  Name="Error_Gbox" Grid.Row="5" Height="140">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Error Handling</TextBlock>
+                    </GroupBox.Header>
+                    <StackPanel Margin="20,10,0,0">
+                        <RadioButton  Height="20" x:Name="inventPause_Rbtn" Margin="20,10,0,0" HorizontalAlignment="Left" Width="220.5" VerticalAlignment="Top" Content="Pause at error state" IsChecked="{Binding InventoryPauseatErrorstate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                        <RadioButton  Height="20" x:Name="inventContinue_Rbtn" Margin="20,10,0,0" VerticalAlignment="Top" Content="Continue Testing"  HorizontalAlignment="Left" Width="206.5" IsChecked="{Binding InventoryContinueTesting,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Grid.Row="0" Content="Rerun the failed TestCase" Height="28" HorizontalAlignment="Left"    Margin="57,10,0,8" x:Name="Rerun_chkbox" />
+                        <Grid  Height="20" Width="300" Margin="238,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="TxtErrorHandling" Style="{StaticResource txboxWM1}" IsEnabled="{Binding InventoryReRunFailedTestCaseEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding InventoryReRunFailedTestCase ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="12" PreviewTextInput="RerunthefailedTestCase_textBox_PreviewTextInput" PreviewKeyDown="RerunthefailedTestCase_textBox_PreviewKeyDown" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </Grid>
+                        <!--<Grid  Height="20" Width="105" Margin="351,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="ErrorHandlingText2" Style="{StaticResource txboxWM2}"  Height="20" Width="105" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"/>
+                        </Grid>
+                        <ComboBox x:Name="ErrorHandlingCombo" Height="20" Width="50" Margin="470,-45,0,0" HorizontalAlignment="Left"/>-->
+                    </StackPanel>
+                </GroupBox>
+
+                <!--</StackPanel>-->
+            </HierarchicalDataTemplate>
+
+
+            <!-- Log Error Handling-->
+            <HierarchicalDataTemplate x:Key="LogErrorHandling" x:Shared="False" >
+                <!--<StackPanel x:Name="ErrorHandlingstack" Margin="10,0,0,0" Background="#FF9CAAC1"  Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" >-->
+                <GroupBox BorderBrush="Black" Name="Error_Gbox" Grid.Row="5" Height="140">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Error Handling</TextBlock>
+                    </GroupBox.Header>
+                    <StackPanel Margin="20,10,0,0">
+                        <RadioButton  Height="20" x:Name="LogtPause_Rbtn" Margin="20,10,0,0" HorizontalAlignment="Left" Width="220.5" VerticalAlignment="Top" Content="Pause at error state" IsChecked="{Binding LogPauseatErrorstate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                        <RadioButton  Height="20" x:Name="LogContinue_Rbtn" Margin="20,10,0,0" VerticalAlignment="Top" Content="Continue Testing"  HorizontalAlignment="Left" Width="206.5" IsChecked="{Binding LogContinueTesting,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Label Grid.Row="0" Content="Rerun the failed TestCase" Height="28" HorizontalAlignment="Left" Margin="57,10,0,8" x:Name="Rerun_chkbox" />
+                        <Grid  Height="20" Width="300" Margin="238,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="TxtErrorHandling" Style="{StaticResource txboxWM1}" IsEnabled="{Binding LogReRunFailedTestCaseEnabled,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding LogReRunFailedTestCase ,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="12" PreviewTextInput="RerunthefailedTestCase_textBox_PreviewTextInput" PreviewKeyDown="RerunthefailedTestCase_textBox_PreviewKeyDown" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </Grid>
+                        <!--<Grid  Height="20" Width="105" Margin="351,-45,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox x:Name="ErrorHandlingText2" Style="{StaticResource txboxWM2}"  Height="20" Width="105" HorizontalAlignment="Left" FontSize="12" VerticalContentAlignment="Center"/>
+                        </Grid>
+                        <ComboBox x:Name="ErrorHandlingCombo" Height="20" Width="50" Margin="470,-45,0,0" HorizontalAlignment="Left"/>-->
+                    </StackPanel>
+                </GroupBox>
+
+                <!--</StackPanel>-->
+            </HierarchicalDataTemplate>
+
+            <!--Log Selection Static Resource-->
+            <HierarchicalDataTemplate x:Key="LogSelection" x:Shared="False">
+                <GroupBox BorderBrush="Black">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Log Verification</TextBlock>
+                    </GroupBox.Header>
+                    <StackPanel x:Name="LogSelectionstack" Margin="10,10,0,0" Background="#FF9CAAC1" >
+                        <CheckBox  Name="ilog_chbx1" Content="ilog" Margin="10,5,0,0" IsChecked="{Binding chk_InventoryIlog,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                        <CheckBox  Name="Configuration_chbx2" Content="Configuration"  Margin="10,10,0,0" IsChecked="{Binding chk_InventoryConfiguration,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                        <CheckBox  Name="Eventlog_chbx3" Content="Event log"  Margin="10,10,0,0" IsChecked="{Binding chk_InventoryEventlog,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  />
+                    </StackPanel>
+                </GroupBox>
+            </HierarchicalDataTemplate>
+            <!--device_to_search-->
+            <HierarchicalDataTemplate x:Key="device_to_search" x:Shared="False">
+                <GroupBox BorderBrush="Black" >
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Device to search</TextBlock>
+                    </GroupBox.Header>
+                    <StackPanel x:Name="devicesearchstack" Margin="10,10,0,0" Background="#FF9CAAC1" >
+                        <Label Name="devicesearch" Content="Device To Search" Margin="10,10,0,0"/>
+                    </StackPanel>
+                </GroupBox>
+            </HierarchicalDataTemplate>
+            <!--Background-->
+            <HierarchicalDataTemplate x:Key="Background" x:Shared="False">
+                <GroupBox BorderBrush="Black" Margin="-10,10,0,0" Name="Error_Gbox" Grid.Row="5" Height="110">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Background</TextBlock>
+                    </GroupBox.Header>
+                    <StackPanel x:Name="Backgroundstack" Margin="10,10,0,0" Background="#FF9CAAC1" HorizontalAlignment="Stretch" >
+                        <CheckBox  Name="Background_chbx1" Content="Background" Margin="10,10,0,0" />
+                        <Grid  Height="20" Width="100" Margin="120,-15,0,0"  HorizontalAlignment="Left" Background="White">
+                            <TextBox Style="{StaticResource txboxWM3}"  Width="100" HorizontalAlignment="Left" Height="20" FontSize="12" VerticalContentAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </Grid>
+                        <Grid  Height="20" Width="100"  Margin="240,-20,0,0" HorizontalAlignment="Left" Background="White">
+                            <TextBox Style="{StaticResource txboxWM4}"  Width="100" HorizontalAlignment="Left" Height="20" FontSize="12" VerticalContentAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </Grid>
+                        <ComboBox  Margin="360,-20,0,0" Width="50" HorizontalAlignment="Left" Height="20" />
+                    </StackPanel>
+                </GroupBox>
+            </HierarchicalDataTemplate>
+            <!--Telnet Action-->
+            <HierarchicalDataTemplate x:Key="Telnetaction" x:Shared="False">
+                <Grid Background="#FF9CAAC1" Name="TelnetActionGrid">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="200" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                        <ColumnDefinition Width="30" />
+                    </Grid.ColumnDefinitions>
+                    <ComboBox x:Name="TelnetDeviceCombobox" ItemsSource="{Binding CBMCombo}" SelectedItem="{Binding TelnetSelectedDevice, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Grid.Column="0" Grid.Row="0" VerticalAlignment="Top" Margin="0,5,0,5" Width="200" HorizontalAlignment="Left"/>
+                    <Grid Grid.Column="1" Background="White" Height="22" Name="grd_Command" HorizontalAlignment="Stretch" Width="Auto" Margin="5,0,5,0">
+                        <TextBox Name="txt_Command" Height="22" Text="{Binding TelnetCommandText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" d:LayoutOverrides="Height" PreviewKeyUp="TextBox_PreviewKeyUp">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="None">
+                                                        <VisualBrush.Visual>
+                                                            <TextBlock Text="Telnet Command" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                                            <Setter Property="Background">
+                                                <Setter.Value>
+                                                    <VisualBrush Stretch="None">
+                                                        <VisualBrush.Visual>
+                                                            <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" />
+                                                        </VisualBrush.Visual>
+                                                    </VisualBrush>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                            <TextBox.ContextMenu>
+                                <ContextMenu Visibility="Collapsed" />
+                            </TextBox.ContextMenu>
+                        </TextBox>
+                    </Grid>
+                    <Button Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,5,0,5" x:Name="btn_SetTelnetMinus" VerticalAlignment="Top" Click="btn_SetTelnetMinus_Click" Focusable="false" Grid.Column="2"  >
+                        <Image Stretch="Uniform"  Source="/Images/Minus.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=btn_SelectActionPlus, Path=Visibility}" Value="Hidden">
+                                        <Setter Property="Button.Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button   Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,5,0,5" x:Name="btn_SetTelnetCopy" VerticalAlignment="Top" Click="btn_SetTelnetCopy_Click" Focusable="false" Grid.Column="3">
+                        <Image Stretch="Uniform"  Source="/Images/copy.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=btn_SelectActionPlus, Path=Visibility}" Value="Hidden">
+                                        <Setter Property="Button.Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Grid.Column="4"   Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,5,0,5" x:Name="btn_SetTelnetMoveUp" VerticalAlignment="Top" Click="btn_SetTelnetMoveUp_Click" Focusable="false">
+                        <Image Stretch="Uniform"  Source="/Images/Move-up.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=btn_SelectActionPlus, Path=Visibility}" Value="Hidden">
+                                        <Setter Property="Button.Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button Grid.Column="5"  Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,5,0,5" x:Name="btn_SetTelnetMoveDown" VerticalAlignment="Top" Click="btn_SetTelnetMoveDown_Click" Focusable="false">
+                        <Image Stretch="Uniform"  Source="/Images/move-down.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <Button.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=btn_SelectActionPlus, Path=Visibility}" Value="Hidden">
+                                        <Setter Property="Button.Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </HierarchicalDataTemplate>
+
+            <HierarchicalDataTemplate x:Key="VerifyControlContentDataTemplare" x:Shared="False">
+                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" >-->
+                <AdornerDecorator>
+                    <Grid Background="#FF9CAAC1" x:Name="ControlActionGrid" Margin="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <!--<ColumnDefinition Width="90" />-->
+                            <ColumnDefinition Width="78" />
+                            <ColumnDefinition Width="78" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+                            <ColumnDefinition Width="30" />
+
+                        </Grid.ColumnDefinitions>
+                        <StackPanel x:Name="stack_ComponentType" Grid.Column="0" Margin="5,5,0,5" Background="#FF9CAAC1" >
+                            <Label Content="Component Type" x:Name="lbl_CompType" HorizontalAlignment="Left" Height="25" Margin="-2,0,-0.01,0"/>
+                            <ComboBox x:Name="cmb_ComponentType"  ItemsSource="{Binding TestControlComponentTypeList}" SelectedItem="{Binding TestControlComponentTypeSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" x:Name="stack_ComponentName" Margin="5,5,0,5" Background="#FF9CAAC1" >
+                            <Label Content="Component Name" x:Name="lbl_CompName" HorizontalAlignment="Left" Height="25" Width="120" Margin="-2,0,0,0" ToolTip="Component Name is the External Prefix name from design file"/>
+                            <ComboBox x:Name="cmb_ComponentName" ToolTip="Component Name is the External Prefix name from design file" ItemsSource="{Binding TestControlComponentNameList}" SelectedItem="{Binding TestControlComponentNameSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="7">
+
+                            <CheckBox Content="Loop" IsChecked="{Binding LoopIsChecked}" Visibility="{Binding LoopCheckVisibility}" Margin="5,8.664,0,5.336" x:Name="Loop_checkBox" HorizontalAlignment="Left"/>
+
+                            <Grid  x:Name="LoopStart_Grd" Margin="5,5,0,5" Height="22" Background="White" Visibility="{Binding LoopStartValueVisibility}" Width="auto" HorizontalAlignment="Left" VerticalAlignment="Bottom" >
+                                <TextBox x:Name="LoopStart_textBox" Text="{Binding LoopStart, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" PreviewTextInput="LoopStart_textBox_PreviewTextInput" PreviewKeyDown="LoopStart_textBox_PreviewKeyDown" Width="80" PreviewKeyUp="TextBox_PreviewKeyUp" >
+                                    <TextBox.ContextMenu>
+                                        <ContextMenu Visibility="Collapsed" />
+                                    </TextBox.ContextMenu>
+                                </TextBox>
+                            </Grid>
+
+
+                            <Grid x:Name="LoopEnd_Grd"  Margin="5,5,0,5" Height="22" Visibility="{Binding LoopEndValueVisibility}" Background="White" Width="70" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                <TextBox x:Name="LoopEnd_textBox" Text="{Binding LoopEnd, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" PreviewTextInput="LoopEnd_textBox_PreviewTextInput" PreviewKeyDown="LoopEnd_textBox_PreviewKeyDown" Width="70" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                    <TextBox.ContextMenu>
+                                        <ContextMenu Visibility="Collapsed" />
+                                    </TextBox.ContextMenu>
+                                </TextBox>
+                            </Grid>
+
+                            <Grid  Margin="5,5,0,5" x:Name="LoopIncrement_Grd" Height="22" Visibility="{Binding LoopIncrementValueVisibility}" Background="White" Width="120" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                                <TextBox x:Name="LoopIncrement_textBox" Text="{Binding LoopIncrement, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" PreviewTextInput="LoopIncrement_textBox_PreviewTextInput" PreviewKeyDown="LoopIncrement_textBox_PreviewKeyDown" Width="120" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                    <TextBox.ContextMenu>
+                                        <ContextMenu Visibility="Collapsed" />
+                                    </TextBox.ContextMenu>
+                                </TextBox>
+                            </Grid>
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" x:Name="stack_Property" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Control" x:Name="lbl_Property" HorizontalAlignment="Left" Height="25" Margin="-2,0,0,0"/>
+                            <ComboBox x:Name="cmb_Property" ItemsSource="{Binding VerifyTestControlPropertyList}" SelectedItem="{Binding TestControlPropertySelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3" x:Name="stack_ChannelSelection" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Channel Selection" x:Name="lbl_channelSelection" HorizontalAlignment="Left" Height="25" Margin="-4,0,0,0" />
+                            <ComboBox x:Name="cmb_channelSelection" ItemsSource="{Binding ChannelSelectionList}" IsEnabled="{Binding ChannelEnabled}" SelectedItem="{Binding ChannelSelectionSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="4" x:Name="stack_SettingType" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Value Type" x:Name="lbl_SettingType" HorizontalAlignment="Left" Height="25" Margin="-4,0,0,0" />
+                            <ComboBox x:Name="cmb_SettingType" ItemsSource="{Binding InputSelectionComboList}" IsEnabled="{Binding InputSelectionEnabled}" SelectedItem="{Binding InputSelectionComboSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="5" x:Name="stack_Value" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Value" x:Name="lbl_value" HorizontalAlignment="Left" Height="25" Margin="-2,0,0,0"/>
+                            <TextBox x:Name="cmb_Value" Height="22" MaxLength="{Binding valueMaxLength,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding TestControlPropertyInitialValueSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" PreviewTextInput="cmb_Value_PreviewTextInput" PreviewKeyDown="cmb_Value_PreviewKeyDown"  IsEnabled="{Binding valueIsEnabled}" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                            <TextBlock Foreground="#FFCB2E2E"  FontWeight="Medium" Text="{Binding DataTypeTextBlock,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" FontSize="11"  Visibility="{Binding valueIsEnabled}" Margin="0,0,0,0" x:Name="Value_Textblock" HorizontalAlignment="Stretch" Height="Auto" TextWrapping="Wrap"  VerticalAlignment="Bottom" d:LayoutOverrides="Width" />
+                            <!--<ComboBox ContextMenu="{x:Null}" x:Name="combobox_Value" ItemsSource="{Binding InitialComboList}" Visibility="{Binding valueComboboxVisibility}" SelectedItem="{Binding TestControlComboValueSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,-22,0,0"  HorizontalAlignment="Stretch" Width="Auto" RenderTransformOrigin="0.568,-0.211" />-->
+                        </StackPanel>
+                        <!--<StackPanel Grid.Column="6" x:Name="stack_TolerenceType" Margin="5,5,0,5" Background="#FF9CAAC1">
+                        <Label Content="Tolerence Type" x:Name="lbl_TolerenceType" HorizontalAlignment="Left" Height="25" Margin="-4,0,0,0" />
+                        <ComboBox x:Name="cmb_TolerenceType" ItemsSource="{Binding InputSelectionComboList}" IsEnabled="{Binding InputSelectionEnabled}" SelectedItem="{Binding InputSelectionComboSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}" Width="120" TextWrapping="Wrap" />
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </StackPanel>-->
+                        <StackPanel Grid.Column="6" x:Name="stack_UpperLimit" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Upper Limit" x:Name="lbl_UpperLimit" HorizontalAlignment="Left" Height="25" Margin="-2,0,0,0"/>
+                            <TextBox x:Name="cmb_UpperLimit" Height="22" MaxLength="{Binding valueMaxLength,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding MaximumLimit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" IsEnabled="{Binding MaxLimitIsEnabled}" PreviewKeyDown="cmb_UpperLimit_PreviewKeyDown" PreviewTextInput="cmb_UpperLimit_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+
+                            <!--<ComboBox ContextMenu="{x:Null}" x:Name="combobox_Value" ItemsSource="{Binding InitialComboList}" Visibility="{Binding valueComboboxVisibility}" SelectedItem="{Binding TestControlComboValueSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,-22,0,0"  HorizontalAlignment="Stretch" Width="Auto" RenderTransformOrigin="0.568,-0.211" />-->
+                        </StackPanel>
+                        <StackPanel Grid.Column="7" x:Name="stack_LowerLimit" Margin="5,5,0,5" Background="#FF9CAAC1">
+                            <Label Content="Lower Limit" x:Name="lbl_LowerLimit" HorizontalAlignment="Left" Height="25" Margin="-2,0,0,0"/>
+                            <TextBox x:Name="cmb_LowerLimit" Height="22" MaxLength="{Binding valueMaxLength,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding MinimumLimit, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" IsEnabled="{Binding MinLimitIsEnabled}" PreviewKeyDown="cmb_LowerLimit_PreviewKeyDown" PreviewTextInput="cmb_LowerLimit_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                            <!--<ComboBox ContextMenu="{x:Null}" x:Name="combobox_Value" ItemsSource="{Binding InitialComboList}" Visibility="{Binding valueComboboxVisibility}" SelectedItem="{Binding TestControlComboValueSelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Margin="0,-22,0,0"  HorizontalAlignment="Stretch" Width="Auto" RenderTransformOrigin="0.568,-0.211" />-->
+                        </StackPanel>
+                        <StackPanel Grid.Column="8" x:Name="stack_PlusMinus" Margin="2,5,0,5" Background="#FF9CAAC1">
+                            <Button Grid.Column="9" Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,26,0,1" x:Name="btn_VerifyControlMinus" VerticalAlignment="Top" Click="btn_VerifyControlMinus_Click" Focusable="false">
+                                <Image Stretch="Uniform"  Source="/Images/Minus.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Button.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=btn_SelectVerificationPlus, Path=Visibility}" Value="Hidden">
+                                                <Setter Property="Button.Visibility" Value="Hidden"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="9" x:Name="stack_VerifyCopy" Margin="2,5,0,5" Background="#FF9CAAC1">
+                            <Button Grid.Column="9" Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,26,0,1" x:Name="btn_VerifyControlCopy" VerticalAlignment="Top" Click="btn_VerifyControlCopy_Click" Focusable="false">
+                                <Image Stretch="Uniform"  Source="/Images/copy.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Button.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=btn_SelectVerificationPlus, Path=Visibility}" Value="Hidden">
+                                                <Setter Property="Button.Visibility" Value="Hidden"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="10" Grid.Row="0" x:Name="stack_MoveUp" Margin="2,31,0,5" Background="#FF9CAAC1">
+                            <Button Grid.Column="10" Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,0,0,1" x:Name="btn_VerifyControlMoveUp" VerticalAlignment="Top" Click="btn_VerifyControlMoveUp_Click" Focusable="false">
+                                <Image Stretch="Uniform"  Source="/Images/move-up.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Button.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=btn_SelectVerificationPlus, Path=Visibility}" Value="Hidden">
+                                                <Setter Property="Button.Visibility" Value="Hidden"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Grid.Column="11" Grid.Row="0" x:Name="stack_VerifyMoveDown" Margin="2,31,0,5" Background="#FF9CAAC1">
+                            <Button Grid.Column="11" Background="Transparent" BorderBrush="SteelBlue" Height="22" Margin="0,0,0,1" x:Name="btn_VerifyControlMoveDown" VerticalAlignment="Top" Click="btn_VerifyControlMoveDown_Click" Focusable="false">
+                                <Image Stretch="Uniform"  Source="/Images/move-down.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Button.Style>
+                                    <Style>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=btn_SelectVerificationPlus, Path=Visibility}" Value="Hidden">
+                                                <Setter Property="Button.Visibility" Value="Hidden"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </AdornerDecorator>
+                <!--</ScrollViewer>-->
+            </HierarchicalDataTemplate>
+
+            <!--Log Verification-->
+
+            <HierarchicalDataTemplate x:Key="VerifyLogContentDataTemplare" x:Shared="False">
+                <Grid Background="#FF9CAAC1" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"  />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Log Verification" Grid.Row="0" Height="27" HorizontalAlignment="Left" Margin="0,0,0,0" x:Name="label23" VerticalAlignment="Top" Width="100"  />
+                    <CheckBox Content="ilog" Grid.Row="1" IsChecked="{Binding iLogIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox27" VerticalAlignment="Center" Width="100" />
+                    <CheckBox Content="Configurator Log" Grid.Row="2" IsChecked="{Binding ConfiguratorIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox7" VerticalAlignment="Center" Width="130" />
+                    <CheckBox Content="Event Log" Grid.Row="3" IsChecked="{Binding EventLogIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox8" VerticalAlignment="Center" Width="100" />
+                    <CheckBox Content="SIP Log" Grid.Row="4" IsChecked="{Binding SIPLogIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox9" VerticalAlignment="Center" Width="100" />
+                    <CheckBox Content="Qsys App Log" Grid.Row="5" IsChecked="{Binding QsysAppLogIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Height="20" HorizontalAlignment="Left" Margin="33,0,0,0" x:Name="checkBox10" VerticalAlignment="Center" Width="100" />
+                    <!--<CheckBox Content="SoftPhone Log" Grid.Row="6" IsChecked="{Binding SoftPhoneLogIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox11" VerticalAlignment="Top" Width="100" />-->
+                    <CheckBox Content="UCI Viewer Log" Grid.Row="7" IsChecked="{Binding UCIViewerLogIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox12" VerticalAlignment="Center" Width="100" />
+                    <CheckBox Content="Kernel Log" Grid.Row="8" IsChecked="{Binding KernelLogIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox13" VerticalAlignment="Center" Width="100" />
+                    <CheckBox Content="Windows Event Logs" Grid.Row="9" IsChecked="{Binding WindowsEventLogsIsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="20" HorizontalAlignment="Left" Margin="33,3,0,0" x:Name="checkBox14" VerticalAlignment="Top" Width="140" />
+                    <ComboBox Grid.Column="1" Grid.Row="1" IsEnabled="{Binding iLog_combobox_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding iLog_selected_item , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding Log_verification_kernellog , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" HorizontalAlignment="right" Margin="10,0,0,0" x:Name="comboBox26" VerticalAlignment="Center" Width="174" />
+                    <ComboBox Grid.Column="1" Grid.Row="8" IsEnabled="{Binding kernelLog_combobox_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  SelectedItem="{Binding kernalLog_selected_item , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  ItemsSource="{Binding Log_verification_kernellog , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Height="22" HorizontalAlignment="right"  Margin="10,0,0,0" x:Name="comboBox23" VerticalAlignment="Center" Width="174" />
+                    <TextBox IsEnabled="{Binding ilogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding ilogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="1" Margin="10,2,5,2" VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <TextBox IsEnabled="{Binding configuratorlogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Text="{Binding configuratorlogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="2" Margin="10,2,5,2" VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <TextBox IsEnabled="{Binding eventlogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding eventlogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="3" Margin="10,2,5,2" VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <TextBox IsEnabled="{Binding siplogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding siplogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="4" Margin="10,2,5,2"  VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <TextBox IsEnabled="{Binding qsysapplogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  Text="{Binding qsysapplogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="5" Margin="10,2,5,2" VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <!--<TextBox ContextMenu="{x:Null}" IsEnabled="{Binding softphonelogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding softphonelogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="6" Height="18" Margin="10,3,5,0" />-->
+                    <TextBox IsEnabled="{Binding UCIlogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding UCIlogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="7" Margin="10,2,5,2" VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <TextBox IsEnabled="{Binding kernallogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding kernallogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="8" Margin="10,2,5,2" VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                    <TextBox IsEnabled="{Binding windowseventlogtext_enable , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Text="{Binding windowseventlogtext , Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" ToolTip="Search Keyword" Grid.Column="2" Grid.Row="9"  Margin="10,2,5,2" VerticalAlignment="Center" PreviewKeyUp="TextBox_PreviewKeyUp">
+                        <TextBox.ContextMenu>
+                            <ContextMenu Visibility="Collapsed" />
+                        </TextBox.ContextMenu>
+                    </TextBox>
+                </Grid>
+            </HierarchicalDataTemplate>
+
+
+            <!--telnetverify-->
+            <HierarchicalDataTemplate x:Key="telnetverify" x:Shared="False">
+                <GroupBox BorderBrush="Black">
+                    <GroupBox.Header>
+                        <TextBlock Style="{StaticResource TextBlockStyle}">Ssh/Telnet Verification</TextBlock>
+                    </GroupBox.Header>
+                    <Grid Background="#FF9CAAC1" Margin="20,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition Height="25"/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <RadioButton Content="Continue Without Doing Anything" Height="18" HorizontalAlignment="Left" Grid.Row="0" Margin="20,5,0,0" Name="ChkBx_ContinueAnything" Grid.ColumnSpan="1" IsChecked="{Binding ContinueWithoutdoinganything,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Width="206" />
+                        <RadioButton Content="Store Current Result" Height="15" HorizontalAlignment="Left"  Grid.Row="1" Margin="20,5,5,5"  Name="ChkBx_StoreResult" IsChecked="{Binding StoreCurrentResult,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <RadioButton Content="Compare Values" Height="15" HorizontalAlignment="Left" Margin="20,5,5,5"   Grid.Row="2" Name="ChkBx_CompareValues" IsChecked="{Binding CompareValues,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" />
+                        <Grid  Grid.Column="0" Grid.Row="3" HorizontalAlignment="Left" Margin="23,0,0,0">
+                            <ComboBox Height="23" Width="122" ItemsSource="{Binding KeywordTypeList}" ToolTip="{Binding keywordTypetooltip, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding FailureCriteriaEnable}" SelectedItem="{Binding KeywordTypeVerify}"> </ComboBox>
+                        </Grid>
+                        <Grid Background="White" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="200,5,5,5"  Grid.Column="0" Height="23"  Grid.Row="3" Width="300" >
+                            <TextBox Name="txt_Search1" Height="23" Width="300" VerticalAlignment="Top"  HorizontalAlignment="Left" IsEnabled="{Binding FailureCriteriaEnable,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Text="{Binding FailureCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" PreviewKeyUp="TextBox_PreviewKeyUp">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <VisualBrush Stretch="None">
+                                                            <VisualBrush.Visual>
+                                                                <TextBlock Text="Enter Keyword For Failure Criteria" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" />
+                                                            </VisualBrush.Visual>
+                                                        </VisualBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <VisualBrush Stretch="None">
+                                                            <VisualBrush.Visual>
+                                                                <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" />
+                                                            </VisualBrush.Visual>
+                                                        </VisualBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                                <TextBox.ContextMenu>
+                                    <ContextMenu Visibility="Collapsed" />
+                                </TextBox.ContextMenu>
+                            </TextBox>
+                        </Grid>
+                        <!--<Button Grid.Column="2" Content="Fail Criteria" Height="25" HorizontalAlignment="Right" Margin="0,105,9,20" Foreground="White" Name="button8" Style="{StaticResource ButtonStyle1}"  />-->
+                    </Grid>
+                </GroupBox>
+            </HierarchicalDataTemplate>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="#FF405579">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  CanContentScroll="False">
+            <Grid  Background="#FF9CAAC1" Grid.Row="0"  >
+                <Grid.LayoutTransform>
+                            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=RunnerSlider, Path=Value}" ScaleY="{Binding ElementName=RunnerSlider, Path=Value}"/>
+                        </Grid.LayoutTransform>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100*" />
+                    <RowDefinition Height="100*" />
+                    <RowDefinition Height="Auto"  />
+                    <RowDefinition Height="Auto"  />
+
+                </Grid.RowDefinitions>
+                <!--Telnet Monitoring-->
+
+                <StackPanel Background="#FF9CAAC1" Margin="0,10,0,0"  >
+                    <GroupBox  BorderBrush="Black" Grid.Row="2" VerticalAlignment="Top"   FontSize="12" Margin="10,10,10,10" Foreground="AliceBlue" Height="auto" >
+                        <GroupBox.Header>
+                            <CheckBox x:Name="TelnetMonitor" Content="Ssh/Telnet Monitoring" FontWeight="Bold" FontFamily="Consolas"  FontSize="14" Checked="Telnet_Checked" Unchecked="Telnet_Unchecked"/>
+                        </GroupBox.Header>
+                        <!--<GroupBox.LayoutTransform>
+                            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=RunnerSlider, Path=Value}" ScaleY="{Binding ElementName=RunnerSlider, Path=Value}"/>
+                        </GroupBox.LayoutTransform>-->
+
+                    
+                            <StackPanel Orientation="Vertical" x:Name="Telnet_grpbx">
+
+                                <GroupBox Width="auto" Height="auto" BorderBrush="Black" Margin="10,10,10,10" >
+                                    <GroupBox.Header>
+                                        <TextBlock Style="{StaticResource TextBlockStyle}">Ssh/Telnet Action</TextBlock>
+                                    </GroupBox.Header>
+                                <!--<ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False">-->
+                                    <StackPanel Orientation="Vertical" Margin="10,10,3,0"  ScrollViewer.VerticalScrollBarVisibility="Auto">
+
+                                        <Label Content="Ssh/Telnet Action : " Margin="10,10,3,0" HorizontalAlignment="left" FontSize="14" Background="Transparent" BorderBrush="SteelBlue" Height="30"  VerticalAlignment="Top"  />
+                                        <Button  HorizontalAlignment="left" Margin="140,-25,3,0" Background="Transparent" BorderBrush="SteelBlue" Height="22" x:Name="btn_SelectActionPlus" VerticalAlignment="Top" Click="btn_SetTelnetAdd_Click" Focusable="false">
+                                            <Image Stretch="Uniform"  Source="/Images/Add.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <Button.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=btn_SelectActionPlus, Path=Visibility}" Value="Hidden">
+                                                            <Setter Property="Button.Visibility" Value="Hidden"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False" MaxHeight="190">
+                                        <ItemsControl ItemsSource="{Binding SetTestTelnetList}" ItemTemplate="{StaticResource Telnetaction}" DataContext="{Binding}"  x:Name="Telnetactiondata"  Margin="0,0,10,0"  ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+                                    </ScrollViewer>
+                                </StackPanel>
+                        <!--</ScrollViewer>-->
+
+
+                    </GroupBox>
+
+                                <ContentPresenter ContentTemplate="{StaticResource telnetverify}" DataContext="{Binding}"  x:Name="telnetverifydata"  HorizontalAlignment="Stretch" Margin="10,0,10,0" >
+                                    <!--<ContentPresenter.LayoutTransform>
+                                        <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding Value, ElementName=RunnerSlider}" ScaleY="{Binding Value, ElementName=RunnerSlider}"/>
+                                    </ContentPresenter.LayoutTransform>-->
+                                </ContentPresenter>
+                                <ContentPresenter ContentTemplate="{StaticResource ErrorHandling}"  DataContext="{Binding}" x:Name="ErrorHandlingdata"   HorizontalAlignment="Stretch"  Height="176" OpacityMask="#FF9CAAC1" Margin="10,-10,10,0" >
+                                    <!--<ContentPresenter.LayoutTransform>
+                                        <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding Value, ElementName=RunnerSlider}" ScaleY="{Binding Value, ElementName=RunnerSlider}"/>
+                                    </ContentPresenter.LayoutTransform>-->
+                                </ContentPresenter>
+                            </StackPanel>
+                            
+                      
+                        
+                    </GroupBox>
+
+                </StackPanel>
+
+                <!--Control_Value_Monitoring-->
+                <StackPanel Background="#FF9CAAC1"  Margin="0,10,0,0" Grid.Row="1" Name="CVM">
+                   
+                    <GroupBox  BorderBrush="Black" Grid.Row="2"  VerticalAlignment="Bottom" Margin="10,10,10,10"  FontSize="12" Foreground="AliceBlue" Name="grb_ControlValueMonitoring" Height="auto">
+                        <GroupBox.Header>
+                            <CheckBox x:Name="Control_Value_Monitoring" Content="Control Value Monitoring" FontWeight="Bold" FontFamily="Consolas"  FontSize="14" Checked="Control_Value_Monitoring_Checked" Unchecked="Control_Value_Monitoring_Unchecked"/>
+                        </GroupBox.Header>
+                        <!--<GroupBox.LayoutTransform>
+                            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=RunnerSlider, Path=Value}" ScaleY="{Binding ElementName=RunnerSlider, Path=Value}"/>
+                        </GroupBox.LayoutTransform>-->
+                        <!--<ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False">-->
+
+                            <StackPanel Orientation="Vertical" x:Name="Control_grpbx">
+                                <GroupBox Width="auto" Height="auto" BorderBrush="Black" Margin="10,10,10,10" >
+                                    <GroupBox.Header>
+                                        <TextBlock Style="{StaticResource TextBlockStyle}">Control Verification</TextBlock>
+                                    </GroupBox.Header>
+                                    <StackPanel Orientation="Vertical" Margin="10,10,3,0">
+                                        <Label Content="Control Verification: " Margin="10,10,3,0" HorizontalAlignment="left" FontSize="14" Background="Transparent" BorderBrush="SteelBlue" Height="30"  VerticalAlignment="Top"  />
+                                        <Button  HorizontalAlignment="left" Margin="140,-25,3,0" Background="Transparent" BorderBrush="SteelBlue" Height="22" x:Name="btn_SelectVerificationPlus" VerticalAlignment="Top" Click="btn_SelectVerificationPlus_Click" Focusable="false">
+                                            <Image Stretch="Uniform"  Source="/Images/Add.png" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                            <Button.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=btn_SelectActionPlus, Path=Visibility}" Value="Hidden">
+                                                            <Setter Property="Button.Visibility" Value="Hidden"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                        </Button>
+                                    <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False" MaxHeight="190">
+                                        <ItemsControl ItemTemplate="{StaticResource VerifyControlContentDataTemplare}" ItemsSource="{Binding VerifyTestControlList}" x:Name="VerifyControlContentDataTemplareData" HorizontalAlignment="Stretch" Margin="21.5,0,10,0" />
+                                    </ScrollViewer>
+                                </StackPanel>
+                                </GroupBox>
+                                <ContentPresenter ContentTemplate="{StaticResource CVMErrorHandling}" x:Name="CVMErrorHandlingdata" HorizontalAlignment="Stretch" Margin="10,-10,10,10" Height="auto" >
+                                    <!--<ContentPresenter.LayoutTransform>
+                                        <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding Value, ElementName=RunnerSlider}" ScaleY="{Binding Value, ElementName=RunnerSlider}"/>
+                                    </ContentPresenter.LayoutTransform>-->
+                                </ContentPresenter>
+                            </StackPanel>
+                        <!--</ScrollViewer>-->
+                    </GroupBox>
+                </StackPanel>
+
+                <!--Inventory_Monitoring-->
+                <StackPanel Background="#FF9CAAC1" Margin="0,10,0,10" Grid.Row="2" Name="InventoryMonitor">
+                    <GroupBox BorderBrush="Black" Grid.Row="0" Margin="10,10,10,10" VerticalAlignment="Top" Height="227" FontSize="12" >
+                        <GroupBox.Header>
+                            <CheckBox x:Name="InventoryMonitoring" Content="Inventory Monitoring" FontWeight="Bold" FontFamily="Consolas" FontSize="14" Checked="Inventory_Checked" Unchecked="Inventory_Unchecked"/>
+                        </GroupBox.Header>
+                        <!--<GroupBox.LayoutTransform>
+                            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=RunnerSlider, Path=Value}" ScaleY="{Binding ElementName=RunnerSlider, Path=Value}"/>
+                        </GroupBox.LayoutTransform>-->
+                        <StackPanel x:Name="Inventory_grpbx" IsEnabled="False" Margin="0,0,0,13">
+                            <!--<ContentPresenter ContentTemplate="{StaticResource LogSelection}" Margin="10,0,9,0" Height="130.8"/>-->
+                            <Label Content="Verifies the status of all devices in the current Q-Sys Design"  Width="auto" Height="34" FontSize="14" Margin="10,10,0,0" />
+                            <ContentPresenter x:Name="InventoryErrorHandling" ContentTemplate="{StaticResource InventoryErrorHandling}" Margin="10,0"/>
+                        </StackPanel>
+                    </GroupBox>
+                </StackPanel>
+
+                <StackPanel Background="#FF9CAAC1" Grid.Row="3" Margin="0,0,0,10" Name="LogMonitor" >
+                    <GroupBox BorderBrush="Black" Margin="10,10,10,10" VerticalAlignment="Top" FontSize="12" Height="auto">
+                        
+                        <GroupBox.Header>
+                            <CheckBox x:Name="LogMonitoring" Content="Log Monitoring" FontWeight="Bold" FontFamily="Consolas" FontSize="14" Checked="LogMonitoring_Checked" Unchecked="LogMonitoring_Unchecked"/>
+                        </GroupBox.Header>
+                        
+                        <!--<GroupBox.LayoutTransform>
+                            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=RunnerSlider, Path=Value}" ScaleY="{Binding ElementName=RunnerSlider, Path=Value}"/>
+                        </GroupBox.LayoutTransform>-->
+
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" CanContentScroll="False">
+
+                            <StackPanel>
+                                <GroupBox Width="auto" Height="auto" BorderBrush="Black" Margin="10,10,10,10" >
+                                    <GroupBox.Header>
+                                        <TextBlock Style="{StaticResource TextBlockStyle}">Logs</TextBlock>
+                                    </GroupBox.Header>
+
+                                    <ItemsControl x:Name="tabItemVerifyLog" IsEnabled="False" ItemsSource="{Binding VerifyTestLogList}" ItemTemplate="{StaticResource VerifyLogContentDataTemplare}"/>
+
+
+                                </GroupBox>
+
+                                <ContentPresenter x:Name="LogErrorHandling" ContentTemplate="{StaticResource LogErrorHandling}" Margin="10,-10,10,10" VerticalAlignment="Top" Height="153" >
+                                    <!--<ContentPresenter.LayoutTransform>
+                                        <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding Value, ElementName=RunnerSlider}" ScaleY="{Binding Value, ElementName=RunnerSlider}"/>
+                                    </ContentPresenter.LayoutTransform>-->
+                                </ContentPresenter>
+
+                            </StackPanel>
+
+                        </ScrollViewer>
+                        
+                    </GroupBox>
+                   
+
+                </StackPanel>
+
+                
+            </Grid>
+
+
+        </ScrollViewer>
+        <Grid Grid.Row="1" Background="#FF9CAAC1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Text="  Zoom" Foreground="Black"  Grid.Column="0" HorizontalAlignment="Right"  Margin="0,16,282,4" Width="40" />
+            <Slider x:Name="RunnerSlider"  Grid.Column="0" HorizontalAlignment="Right" Width="100" Minimum="1" Maximum="2" IsMoveToPointEnabled="True" Margin="0,13,182,10"/>
+
+            <Button  Style="{StaticResource ButtonStyle3}" IsDefault="True" Content="Save" Grid.Column="0" Margin="10,10,100,10"  HorizontalAlignment="Right" Foreground="White" Click="Save_Click"/>
+            <Button  Style="{StaticResource ButtonStyle3}" Content="Close" Grid.Column="0" Margin="10,10,10,10" HorizontalAlignment="Right" Foreground="White" Click="Cancel_Click" />
+        </Grid>
+    </Grid>
+
+</Window>

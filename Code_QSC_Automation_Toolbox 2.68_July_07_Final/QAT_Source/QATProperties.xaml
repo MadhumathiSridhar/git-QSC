@@ -1,0 +1,102 @@
+﻿<Window x:Class="QSC_Test_Automation.QATProperties"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QSC_Test_Automation"
+        mc:Ignorable="d"
+        Title="Properties" Height="520" Width="550" Background="#FF9CAAC1" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" Icon="/QSC_Test_Automation;component/Images/settings.png" PreviewMouseWheel="Window_PreviewMouseWheel" PreviewKeyDown="Window_PreviewKeyDown" KeyUp="QATprop_keyup" StateChanged="Window_StateChanged" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PresentationFramework.Royale;V3.0.0.0;31bf3856ad364e35;component\themes\royale.normalcolor.xaml" />
+                <ResourceDictionary Source="TreeViewDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.LayoutTransform>
+            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=RunnerSlider, Path=Value}" ScaleY="{Binding ElementName=RunnerSlider, Path=Value}"/>
+        </Grid.LayoutTransform>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <ScrollViewer  VerticalScrollBarVisibility="Auto" Name="b"   >
+            <Grid Name="grid1" >
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="25" />
+
+
+                </Grid.RowDefinitions>
+                <TextBlock  Grid.Row="1" Grid.Column="0"  Name="label1" Margin="10,0,1,0" Height="30" VerticalAlignment="Bottom" FontWeight="Bold" Style="{StaticResource  TextBlockStyle_QATprop}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1"   ContextMenu="{x:Null}" Name="ContentName"  Margin="10,0,189,0"  VerticalAlignment="Bottom" Height="30" Style="{StaticResource  TextBlockStyle_QATprop}" TextWrapping="Wrap"  />
+                <TextBlock Grid.Row="8" x:Name="labelcategory" Text="Category    :" Margin="10,5,0,0" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Height="23" VerticalAlignment="Top" />
+                <TextBox Grid.Row="8" Grid.Column="1"  x:Name="txtcategory" Text="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="25" Margin="7,3,22,0" BorderBrush="Black" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" PreviewTextInput="TextBox_PreviewTextInput" PreviewKeyUp="TextBox_PreviewKeyUp">
+                    <TextBox.ContextMenu>
+                        <ContextMenu Visibility="Collapsed" />
+                    </TextBox.ContextMenu>
+                </TextBox>
+                <TextBlock Grid.Row="9" x:Name="labelcategorylist" Text="Available Category :" Margin="10,4,0,0" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Height="23" VerticalAlignment="Top" />
+                <ComboBox Grid.Row="9" Grid.Column="1"  ContextMenu="{x:Null}" x:Name="combocategory" SelectedItem="{Binding CategorySelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Height="25" Margin="7,3,22,0" BorderBrush="Black"  ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"    TextWrapping="Wrap"   MaxWidth="{Binding ActualWidth, ElementName=txtcategory}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <TextBlock Grid.Row="2" Text="Created by  :" Name="label2" Margin="10,0,0,27" VerticalAlignment="Bottom" Height="30" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="2" Grid.Column="1"  ContextMenu="{x:Null}" Name="CreatorName"  Margin="10,0,22,27" VerticalAlignment="Bottom" Height="30" Style="{StaticResource  TextBlockStyle_QATprop}" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="3" Text="Created on  :" x:Name="label3" VerticalAlignment="Bottom" Height="30" Margin="10,0,0,27"  HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="3" Grid.Column="1"  ContextMenu="{x:Null}" x:Name="CreatedDate" VerticalAlignment="Bottom" Height="30" Style="{StaticResource  TextBlockStyle_QATprop}" Margin="10,0,22,27" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="5" Text="Modified by :" x:Name="label4" Margin="10,0,0,27" VerticalAlignment="Bottom"  Height="30" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="5" Grid.Column="1"  ContextMenu="{x:Null}" x:Name="ModifierName"  Margin="10,0,22,27"  VerticalAlignment="Bottom" Height="30" Style="{StaticResource  TextBlockStyle_QATprop}" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="4" Text="Modified on :" x:Name="label5"  Margin="10,0,0,27" VerticalAlignment="Bottom"  Height="30" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Grid.RowSpan="2" />
+                <TextBlock Grid.Row="4" Grid.Column="1"  ContextMenu="{x:Null}" x:Name="ModifiedDate"  Margin="10,0,22,27" VerticalAlignment="Bottom" Height="30" Style="{StaticResource  TextBlockStyle_QATprop}" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="6" Text="Imported by :" x:Name="label6"  Margin="10,0,0,27" VerticalAlignment="Bottom"  Height="30" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Grid.RowSpan="2" />
+                <TextBlock Grid.Row="6" Grid.Column="1"  ContextMenu="{x:Null}" x:Name="ImporterName"  Margin="10,0,22,27" VerticalAlignment="Bottom" Height="30" Style="{StaticResource  TextBlockStyle_QATprop}" Grid.RowSpan="2"/>
+                <TextBlock Grid.Row="7" Text="Imported on :" x:Name="label7"  Margin="10,0,0,27" VerticalAlignment="Bottom"  Height="30" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160" Grid.RowSpan="2" />
+                <TextBlock Grid.Row="7" Grid.Column="1"  ContextMenu="{x:Null}" x:Name="ImporterDate"  Margin="10,0,22,27" VerticalAlignment="Bottom" Height="30" Style="{StaticResource  TextBlockStyle_QATprop}" Grid.RowSpan="2"/>
+
+                <TextBlock Grid.Row="10" x:Name="Associated" Margin="10,15,0,23" HorizontalAlignment="Left" FontWeight="Bold" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160"/>
+                <ListBox Grid.Row="10" Grid.Column="1" ContextMenu="{x:Null}" x:Name="lstAssociatedItems" ItemsSource="{Binding AssociatedItem}" Margin="7,8,22,14" ScrollViewer.VerticalScrollBarVisibility="Auto" BorderBrush="Black"/>
+
+                <TextBlock Grid.Row="11" x:Name="label8" Text="Summary     :" Margin="10,13,0,25" HorizontalAlignment="Left" Style="{StaticResource  TextBlockStyle_QATprop}" Width="160"/>
+
+                <TextBox Grid.Row="11" Grid.Column="1" x:Name="txtSummary" Margin="7,0,22,1" BorderBrush="Black" TextWrapping="Wrap" MaxWidth="{Binding ActualWidth, ElementName=lstAssociatedItems}"   ScrollViewer.VerticalScrollBarVisibility="Auto" PreviewKeyUp="TextBox_PreviewKeyUp">
+                    <TextBox.ContextMenu>
+                        <ContextMenu Visibility="Collapsed" />
+                    </TextBox.ContextMenu>
+                </TextBox>
+
+                <TextBox Grid.Row="10" Grid.Column="1" x:Name="testID" VerticalAlignment="Top" Height="20" HorizontalAlignment="Left" Width="32" Margin="217,6,0,0" Visibility="Collapsed" PreviewKeyUp="TextBox_PreviewKeyUp">
+                    <TextBox.ContextMenu>
+                        <ContextMenu Visibility="Collapsed" />
+                    </TextBox.ContextMenu>
+                </TextBox>
+                <Button Grid.Row="12" DataContext="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}, Path=DataContext}"  Content="Save" Height="23" Name="btn_Ok"  VerticalAlignment="Bottom" Click="Ok_Click"  Foreground="White" Focusable="False"  Style="{StaticResource ButtonStyle3}" RenderTransformOrigin="0.518,1.223" Margin="0,0,122,8" Grid.Column="1" HorizontalAlignment="Right" Width="75"/>
+                <Button Grid.Row="12" Grid.Column="1"  Content="Cancel" Height="23" Name="btn_Cancel" VerticalAlignment="Bottom" Click="Cancel_Click"  Foreground="White" Focusable="False"  Style="{StaticResource ButtonStyle3}" RenderTransformOrigin="0.518,1.223" Margin="0,0,18,8" HorizontalAlignment="Right" Width="75"/>
+            </Grid>
+        </ScrollViewer>
+        <TextBlock Text="Zoom"  Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" Margin="0,4,110,-4" Style="{StaticResource  TextBlockStyle_QATprop}"/>
+        <Slider x:Name="RunnerSlider" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Width="100" Minimum="1" Maximum="2" IsMoveToPointEnabled="True" ValueChanged="RunnerSlider_ValueChanged"/>
+    </Grid>
+</Window>

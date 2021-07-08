@@ -1,0 +1,55 @@
+﻿<Window x:Class="QSC_Test_Automation.shortcut_keys"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QSC_Test_Automation"
+        mc:Ignorable="d"
+        Title="QAT_Shortcuts" Height="400" Width="500" MaxHeight="400" MaxWidth="500" ResizeMode="NoResize" Icon="Images/Final_QAT_Icon.ico" >
+    <Grid Height="Auto" Width="Auto">
+        <Grid.RowDefinitions >
+            <RowDefinition Height="20" />
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="15"/>
+            
+      </Grid.RowDefinitions>
+        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="QAT Shortcuts" FontSize="14" FontStyle="Normal" FontWeight="Bold" VerticalAlignment="Top" Grid.Row="0" />
+        <TextBlock x:Name="textBlock1" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Multiple selection Up - > Shift + Up arrow" FontSize="12" FontStyle="Normal" VerticalAlignment="Top" Grid.Row="1" />
+        <TextBlock x:Name="textBlock2" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Multiple selection Down - > Shift + down arrow" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="2" />
+        <TextBlock x:Name="textBlock3" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Zoom In - > Shift Numpad++" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="3" />
+        <TextBlock x:Name="textBlock4" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Zoom Out - > Shift Numpad--" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="4" />
+        <TextBlock x:Name="textBlock5" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Copy - > Ctrl+C" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="5" />
+        <TextBlock x:Name="textBlock6" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Paste - > Ctrl+V" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="6" />
+        <TextBlock x:Name="textBlock7" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Additional Shortcuts in Designer Inventory view" FontSize="13" FontStyle="Normal" FontWeight="Bold" VerticalAlignment="Top" Grid.Row="8" />
+        <TextBlock x:Name="textBlock8" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="View - > Ctrl+O" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="9" />
+        <TextBlock x:Name="textBlock9" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Edit - > Ctrl+E " FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="10" />
+        <TextBlock x:Name="textBlock10" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="New Tab - > Ctrl+T" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="11" />
+        <TextBlock x:Name="textBlock11" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="New Suite/plan/Case - > Ctrl+N" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="12" />
+        <TextBlock x:Name="textBlock12" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Additional Shortcuts in Designer window Test suite/Plan/Case List view" FontSize="14" FontStyle="Normal" FontWeight="Bold" VerticalAlignment="Top" Grid.Row="14" />
+        <TextBlock x:Name="textBlock13" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Select All - > Ctrl+A" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="15" />
+        <TextBlock x:Name="textBlock14" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Undo - > Ctrl+Z" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="16" />
+        <TextBlock x:Name="textBlock15" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Redo - > Ctrl+Y" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="17" />
+        <TextBlock x:Name="textBlock16" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="Additional Shortcuts in Runner window" FontSize="14" FontStyle="Normal" FontWeight="Bold" VerticalAlignment="Top" Grid.Row="19" />
+        <TextBlock x:Name="textBlock17" HorizontalAlignment="Left" Margin="5,0,0,0" TextWrapping="Wrap" Text="View - > Ctrl+O" FontSize="12" FontStyle="Normal"  VerticalAlignment="Top" Grid.Row="20" />
+
+
+    </Grid>
+</Window>

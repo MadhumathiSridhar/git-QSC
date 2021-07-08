@@ -1,0 +1,72 @@
+﻿<Window x:Class="QSC_Test_Automation.CopyReplace"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QSC_Test_Automation"
+        mc:Ignorable="d"
+        Title="File copy warning" Height="260" Width="350"  Closing="CopyReplaceClose" ResizeMode="NoResize" WindowStyle="ToolWindow" WindowStartupLocation="CenterScreen" Background="#FF9CAAC1" Topmost="True">
+    <Window.Resources>
+        <Style x:Key="textblockborderstyle" TargetType="{x:Type Border}">
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="True">
+                    <Setter Property="BorderBrush" Value="LightBlue" />
+                    <Setter Property="Background" Value="White" />
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" Value="#FF405579" />
+                    <!--<Setter Property="Background" Value="#FF405579" />-->
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="5"/>
+
+        </Grid.RowDefinitions>
+        <TextBlock Text="{Binding Headername,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Style="{StaticResource TextBlockStyle2}" Height="auto" Width="auto" Foreground="Black" FontSize="15" FontWeight="DemiBold" Grid.Row="0" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="5,5,5,5"/>
+        <TextBlock Text="{Binding Filename,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"  Height="auto" Width="auto" Foreground="Black" FontSize="15" Grid.Row="1" TextWrapping="Wrap" HorizontalAlignment="Left" Margin="15,5,5,5" FontWeight="DemiBold"/>
+        <StackPanel Grid.Row="2" Orientation="Vertical">
+            <Border Style="{StaticResource textblockborderstyle}" Height="30" BorderThickness="1" Margin="2,0,2,0" >
+                <StackPanel  Height="25"  Background="White" MouseDown="CopyReplaceClick" Margin="0,2,0,1">
+                    <TextBlock PreviewMouseDown="CopyReplaceClick"    Text="Copy and Replace"  Style="{StaticResource  TextBlockStyle2}" Margin="0,3,0,0"/>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource textblockborderstyle}" Height="30" BorderThickness="1" Margin="2,10,2,0">
+                <StackPanel  Height="25"  Background="White" MouseDown="DontCopyClick" Margin="0,2,0,1">
+            <TextBlock PreviewMouseDown="DontCopyClick" Text="Dont copy" Style="{StaticResource TextBlockStyle2}" Margin="0,3,0,0" Height="auto"/>
+        </StackPanel>
+            </Border>
+            <Border Style="{StaticResource textblockborderstyle}" Height="28" BorderThickness="1" Margin="2,10,2,0">
+                    <StackPanel  Height="25"  Background="White" MouseDown="KeepBothClick" Margin="0,2,0,1">
+                <TextBlock PreviewMouseDown="KeepBothClick" Text="Keep both" Style="{StaticResource TextBlockStyle2}" Margin="0,3,0,0" />
+            </StackPanel>
+            </Border>
+        </StackPanel>
+        <!--<Border Style="{StaticResource textblockborderstyle}" BorderThickness="2" Grid.Row="2" Height="30" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,5,5,0">
+            <TextBlock PreviewMouseDown="CopyReplaceClick"    Text="Copy and Replace"  Style="{StaticResource  TextBlockStyle2}" Height="auto" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,5,5,5"/>
+        </Border>
+        --><!--<Label FontWeight="Normal" Content="Sample1 Sample1 Sample1 Sample1 Sample1 Sample1
+               " Grid.Row="2" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Top" Height="auto" Width="auto" Margin="7,25,0,0"/>--><!--
+        <Border Style="{StaticResource textblockborderstyle}" BorderThickness="2" Grid.Row="2" Height="30" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,57,5,165">
+            <TextBlock PreviewMouseDown="DontCopyClick" Text="Dont copy" Style="{StaticResource TextBlockStyle2}" Height="19" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,2,5,0"/>
+        </Border>
+        --><!--<Label FontWeight="Normal" Content="Sample1 Sample1 Sample1 Sample1 Sample1 Sample1-->
+        <!--" Grid.Row="2" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Center" Height="30" Width="auto" Margin="7,72,0,148" />--><!--
+        <Border Style="{StaticResource textblockborderstyle}" BorderThickness="2" Grid.Row="2" Height="30" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="4,110,6,0">
+            <TextBlock PreviewMouseDown="KeepBothClick" Text="Keep both" Style="{StaticResource TextBlockStyle2}" Height="auto" Width="auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Margin="5,3,5,0"/>
+        </Border>
+        --><!--<Label FontWeight="Normal" Content="Sample1 Sample1 Sample1 Sample1 Sample1 Sample1
+               " Grid.Row="2" FontSize="12" HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="auto" Width="auto" Margin="6,0,0,96"/>-->
+        <CheckBox Margin="5,0,0,0"  Height="auto" Width="auto" Grid.Row="3" HorizontalAlignment="Left" IsChecked="{Binding Checkbox,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Content="{Binding Conflicts,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" FontFamily="TimesNewRoman" FontSize="12"  VerticalAlignment="Center" Visibility="{Binding ChkBoxVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <!--<Button Click="SkipClick" Grid.Row="3"   Content="skip" Height="23"   VerticalAlignment="Center"   Foreground="White" Focusable="False"  Style="{StaticResource ButtonStyle3}"  HorizontalAlignment="Center"  Width="75" Margin="0,0,0,0"/>-->
+
+        <Button Margin="0,0,5,0" Click="CancelClick" Grid.Row="3"   Content="Cancel" Height="23"   VerticalAlignment="Center"   Foreground="White" Focusable="False"  Style="{StaticResource ButtonStyle3}"  HorizontalAlignment="Right" Width="75"/>
+
+    </Grid>
+</Window>

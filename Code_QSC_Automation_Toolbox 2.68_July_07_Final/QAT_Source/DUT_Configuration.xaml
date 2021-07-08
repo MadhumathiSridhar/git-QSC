@@ -1,0 +1,373 @@
+﻿<Window x:Class="QSC_Test_Automation.DUT_Configuration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:staticData="clr-namespace:QSC_Test_Automation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="DUT_Configuration [build2.68]" Background="#FF9CAAC1" Name="DUT_Config" Width="780" SizeToContent="Height" ResizeMode="CanResize" WindowStartupLocation="CenterOwner" Icon="Images/Final_QAT_Icon.ico"  ContentRendered="DUT_Config_ContentRendered" Closing="DUT_Config_Closing" MaxHeight="950">
+    <!--<ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  ScrollViewer.CanContentScroll="True">-->
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/PresentationFramework.Royale;V3.0.0.0;31bf3856ad364e35;component\themes\royale.normalcolor.xaml" />
+                <ResourceDictionary Source="TreeViewDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid Background="#FF9CAAC1" Name="grd" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="45" />
+        </Grid.RowDefinitions>
+
+        <!--<ScrollViewer VerticalScrollBarVisibility="Auto" >-->
+        <!--<Grid Grid.Row="0" >-->
+     
+                <DataGrid  CanUserSortColumns="False" SelectionUnit="Cell" RowHeaderWidth="0" Grid.Row="0" IsReadOnly="True"  ItemsSource="{Binding}" AutoGenerateColumns="False" Name="dataGrid_ConfigFile"  ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="#FF9CAAC1"  >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Binding="{Binding ItemDeviceType}" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Device Type"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Binding="{Binding ItemDeviceName}" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Device Name in design"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding TestSuiteNameList}" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                </DataTemplate>
+
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Test Suites"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn Header="Net Pairing" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+
+                            <ComboBox Name="cmb_netPairing" Mouse.MouseMove="cmb_netPairing_MouseMove" ItemsSource="{Binding ItemNetPairingListForXAML}" SelectionChanged="cmb_netPairing_SelectionChanged" DropDownOpened="cmb_netPairing_DropDownOpened" SelectedItem="{Binding ItemNetPairingSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"  VerticalContentAlignment="Center">
+                                        <ComboBox.ItemTemplate>
+                                            <DataTemplate>
+
+                                                <TextBlock Text="{Binding}"  IsMouseDirectlyOverChanged="TextBlock_IsMouseDirectlyOverChanged" ToolTipService.ShowDuration="4000"  Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ComboBox}},
+                                      Path=ActualWidth}" TextWrapping="Wrap"  />
+
+
+
+                                            </DataTemplate>
+                                        </ComboBox.ItemTemplate>
+                                    </ComboBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+                        <DataGridTextColumn  Width="*" Binding="{Binding ItemCurrentBuild}" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Current Build on the device"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn  Width="*" Binding="{Binding ItemCurrentDesign}" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Current Design running"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="ID" Width="33">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnID" Content="ID" Foreground="{Binding blnIDColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ButtonStyle8}"  Click="ID_Click" VerticalAlignment="Center" Visibility="{Binding IDButtonVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                        <Button.Background>
+                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                                <GradientStop Color="#FF9CAAC1" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Button.Background>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+            
+                <DataGridTemplateColumn  Width="55">
+                            <DataGridTemplateColumn.CellTemplate>
+
+                                <DataTemplate>
+                                    <CheckBox Name="chkRestoreDesign" Visibility="{Binding CoreRestoreDesignVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  IsChecked="{Binding CoreRestoreDesign,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Restore Original Design"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn  Width="40">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <!--<Button x:Name="btn_ClearLogs" Content="Clear Logs" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource ButtonStyle9}" Width="75">
+                                </Button>-->
+                                    <CheckBox Name="ClearLogs" IsChecked="{Binding ClearLogs,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" Visibility="{Binding ClearLogVisibility,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Clear logs"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+                        <DataGridTemplateColumn  Width="48">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Name="btnSetDateAndTime"  Foreground="{Binding BtnDateColor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Visibility="{Binding CoreDateTimeVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Content="Set" Style="{StaticResource ButtonStyle8}"  Click="DateAndTime_Click" VerticalAlignment="Center">
+                                        <Button.Background>
+                                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                                <GradientStop Color="#FFF3F3F3" Offset="0"/>
+                                                <GradientStop Color="#FFEBEBEB" Offset="0.5"/>
+                                                <GradientStop Color="#FFDDDDDD" Offset="0.5"/>
+                                                <GradientStop Color="#FF9CAAC1" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Button.Background>
+                                    </Button>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Device Date Time"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+                <DataGridTemplateColumn  Width="48">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!--<Button x:Name="byp" Content="Bypass" HorizontalAlignment="Center"  VerticalAlignment="Center" Style="{StaticResource ButtonStyle9}" Width="75">
+                                </Button>-->
+                            <CheckBox Name="Bypass_init" IsChecked="{Binding Bypass,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center"  VerticalAlignment="Center" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                    <DataGridTemplateColumn.HeaderStyle>
+                        <Style TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
+                            <Setter Property="FontWeight" Value="DemiBold" />
+                            <Setter Property="ContentTemplate">
+                                <Setter.Value>
+                                    <DataTemplate>
+                                        <TextBlock TextWrapping="Wrap" Text="Bypass status check"></TextBlock>
+                                    </DataTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTemplateColumn.HeaderStyle>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+                </DataGrid>
+        <StackPanel  Grid.Row="1" Margin="0,5,0,5">
+            <TextBlock  Grid.Row="1" Margin="5,15,0,5" Name ="External_devices_configuration" Text="External DUT Configuration :" FontWeight="DemiBold" FontSize="13"/>
+        <DataGrid  Grid.Row="1" CanUserSortColumns="False" SelectionUnit="Cell" RowHeaderWidth="0" IsReadOnly="True"  ItemsSource="{Binding}" AutoGenerateColumns="False" Name="dataGrid_GeneratorConfigFile" Background="#FF9CAAC1">
+                    <DataGrid.Columns>
+
+                        <DataGridTextColumn Width="*" Binding="{Binding VideoGen}" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Video Generator"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Width="*" Binding="{Binding GenModel}" >
+                            <DataGridTextColumn.HeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                    <Setter Property="ContentTemplate">
+                                        <Setter.Value>
+                                            <DataTemplate>
+                                                <TextBlock TextWrapping="Wrap" Text="Generator Model"></TextBlock>
+                                            </DataTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+
+                                </Style>
+                            </DataGridTextColumn.HeaderStyle>
+                            <DataGridTextColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.ElementStyle>
+
+                        </DataGridTextColumn>
+                        <DataGridTemplateColumn Header="IP Address" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Name="Gen_IP_address" VerticalContentAlignment="Center" Text="{Binding Gen_IP_address,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.HeaderStyle>
+                                <Style TargetType="{x:Type DataGridColumnHeader}">
+                                    <Setter Property="HorizontalContentAlignment" Value="Center" />
+                                    <Setter Property="FontWeight" Value="DemiBold" />
+                                </Style>
+                            </DataGridTemplateColumn.HeaderStyle>
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+        </StackPanel>
+        <!--</Grid>-->
+        <!--</ScrollViewer>-->
+      
+        <Grid Grid.Row="2" Background="#FF9CAAC1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Name="txtStatus" Text="{Binding Path=DutStatus, ElementName=DUT_Config}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="1"  Margin="5,10,0,10" FontFamily="Consoale" FontSize="13" FontWeight="Normal" FontStyle="Normal"/>
+            <Button Grid.Row="0" Grid.Column="1" Focusable="True" Content="OK" HorizontalAlignment="Center" IsDefault="True" IsEnabled="True" Name="Save" Click="SaveNetConfig_Click" Margin="0,10,0,10" Style="{StaticResource ButtonStyle1}" Foreground="WhiteSmoke" TextOptions.TextHintingMode="Fixed"/>
+            <!--<Button Grid.Row="0" Grid.Column="2" Focusable="True" Content="Refresh" Name="Refresh" HorizontalAlignment="Right" Click="Refresh_Click" Margin="10,10,10,10"  Style="{StaticResource ButtonStyle1}" Foreground="WhiteSmoke" TextOptions.TextHintingMode="Fixed"/>-->
+        </Grid>
+    </Grid>
+
+
+ 
+</Window>

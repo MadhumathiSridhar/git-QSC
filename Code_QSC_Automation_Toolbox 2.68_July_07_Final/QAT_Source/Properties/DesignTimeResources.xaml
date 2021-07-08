@@ -1,0 +1,8 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:QSC_Test_Automation.Properties">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/QSC_Test_Automation;component/TreeViewDictionary.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+</ResourceDictionary>

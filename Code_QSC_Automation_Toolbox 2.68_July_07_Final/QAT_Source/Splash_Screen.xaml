@@ -1,0 +1,23 @@
+﻿<Window x:Class="QSC_Test_Automation.Splash_Screen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Splash_Screen" Height="300" Width="500" ResizeMode="NoResize" WindowStyle="None" WindowStartupLocation="CenterScreen" Loaded="Window_Loaded" Icon="/QSC_Test_Automation;component/Images/Final_QAT_Icon.ico">
+    <Grid>
+
+        <Rectangle Stroke="Black" StrokeThickness="2">
+            <Rectangle.Fill>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF2C3C59" Offset="0" />
+                    <GradientStop Color="#FF2C3D5A" Offset="1" />
+                    <GradientStop Color="#FF2C3D5A" Offset="1" />
+                    <GradientStop Color="#FF3F5478" Offset="0.105" />
+                    <GradientStop Color="White" Offset="0.593" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+        <Image Height="34" HorizontalAlignment="Right" Margin="0,0,12,12" Name="image1" Stretch="Fill" VerticalAlignment="Bottom" Width="41" Source="/QSC_Test_Automation;component/Images/JI_Logo.jpg" />
+        <Image Height="28" HorizontalAlignment="Left" Margin="12,12,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="54" Source="/QSC_Test_Automation;component/Images/QSC logo1.jpg" />
+        <TextBlock  Text="Version2.68" HorizontalAlignment="Left" Margin="12,0,0,16" Name="label2" FontFamily="Monotype Corsiva" FontSize="18" Height="30" VerticalAlignment="Bottom" FontWeight="Thin" Width="Auto"   TextWrapping="Wrap"/>
+        <TextBlock Text="QSC Automation Toolbox" FontFamily="Monotype Corsiva" FontSize="30" Name="label3" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Center" Width="Auto" TextWrapping="Wrap"/>
+    </Grid>
+</Window>

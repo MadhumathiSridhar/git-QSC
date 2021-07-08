@@ -1,0 +1,156 @@
+﻿<Window x:Class="QSC_Test_Automation.Import"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QSC_Test_Automation"
+        mc:Ignorable="d"
+        Title="Import" Height="auto" Width="500" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto" Icon="Images/Final_QAT_Icon.ico" WindowStartupLocation="CenterScreen"  Background="#FF405579" Closing="Window_Closing" ResizeMode="NoResize" Loaded="Import_Window_Loaded" PreviewKeyDown="TestAction_Previewkeydown" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="TreeViewDictionary.xaml"/>
+                <ResourceDictionary Source="/PresentationFramework.Royale;V3.0.0.0;31bf3856ad364e35;component\themes\royale.normalcolor.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="CustomProgressBarStyle" TargetType="ProgressBar">
+                <Setter Property="Foreground" Value="LightGreen"/>
+                <Setter Property="Background" Value="#FFD2D5D8"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="Maximum" Value="100"/>
+                <Setter Property="IsTabStop" Value="False"/>
+                <Setter Property="BorderBrush">
+                    <Setter.Value>
+                        <LinearGradientBrush EndPoint=".5,1" StartPoint=".5,0">
+                            <GradientStop Color="#FFAEB7BF" Offset="0"/>
+                            <GradientStop Color="#FF919EA7" Offset="0.35"/>
+                            <GradientStop Color="#FF7A8A99" Offset="0.35"/>
+                            <GradientStop Color="#FF647480" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Margin" Value="0,0,0,-25"/>
+            </Style>
+
+            <HierarchicalDataTemplate x:Key="TreeViewCheckBoxDataTemplate" 
+                                      ItemsSource="{Binding Children, Mode=OneWay}">
+                <StackPanel Orientation="Horizontal">
+                    <Grid>
+                        <Grid.LayoutTransform>
+                            <ScaleTransform CenterX="0" CenterY="0" ScaleX="{Binding ElementName=RunnerSlider, Path=Value}" ScaleY="{Binding ElementName=RunnerSlider, Path=Value}"/>
+                        </Grid.LayoutTransform>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+
+                        </Grid.ColumnDefinitions>
+                        <CheckBox Focusable="False"
+                              Visibility="{Binding IsCheckedVisibility}"
+                              IsChecked="{Binding IsChecked}"
+                              VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="0"/>
+
+                        <ContentPresenter Content="{Binding ItemTextBox, Mode=OneWay}" Margin="2.0" HorizontalAlignment="Center" Grid.Column="1" />
+                    </Grid>
+                </StackPanel>
+            </HierarchicalDataTemplate>
+
+        </ResourceDictionary>
+
+
+    </Window.Resources>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Name="txt_browse" Grid.Row="0" Height="22" Grid.Column="0" Margin="10,14,90,4" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" IsEnabled="False"/>
+        <Button  Grid.Row="0" Content="Browse" Margin="0,13,8,2"  Height="25" HorizontalAlignment="Right" Name="Import_Browse" VerticalAlignment="Center" Width="75" Click="ImportBrowse_Click"  Foreground="White" Focusable="False"  Style="{StaticResource ButtonStyle3}" Grid.Column="1"/>
+        <TextBlock Text="Search" Grid.Row="1" Grid.Column="0" Margin="5,10,0,0" FontSize="12" Foreground="White" Width="40" HorizontalAlignment="Left" />
+        <!--<TextBox ContextMenu="{x:Null}"  Grid.Column="1" ToolTip="Search Test Suite from Inventory" AllowDrop="False" Name="txt_Search" Margin="0,10,0,6" Grid.ColumnSpan="3" TextChanged="txt_Search_TextChanged" MouseDown="SearchMouceClick"   />-->
+        <Grid Background="White" Grid.Row="1" Grid.Column="0" Margin="50,10,30,10" Grid.ColumnSpan="3" Height="22" >
+            <TextBox AllowDrop="False" Name="txt_Search" TextChanged="txt_Search_TextChanged" PreviewKeyUp="TextBox_PreviewKeyUp">
+                <TextBox.Style>
+                    <Style TargetType="TextBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <VisualBrush Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <TextBlock Text="Search Inventory" Foreground="Black"  FontStyle="Italic" TextAlignment="Left" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsKeyboardFocusWithin}" Value="True">
+                                <Setter Property="Background">
+                                    <Setter.Value>
+                                        <VisualBrush Stretch="None">
+                                            <VisualBrush.Visual>
+                                                <TextBlock Text="" Foreground="Black"  FontStyle="Italic" TextAlignment="Right" />
+                                            </VisualBrush.Visual>
+                                        </VisualBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </DataTrigger>
+                            <!--<DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=Text}" Value="{x:Null}">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <VisualBrush Stretch="None">
+                                                            <VisualBrush.Visual>
+                                                                <TextBlock Text="Search Inventory" Foreground="Black" FontStyle="Italic" TextAlignment="Center" />
+                                                            </VisualBrush.Visual>
+                                                        </VisualBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=IsFocused}" Value="White">
+                                                <Setter Property="Background">
+                                                    <Setter.Value>
+                                                        <VisualBrush Stretch="None">
+                                                        </VisualBrush>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>-->
+                        </Style.Triggers>
+                    </Style>
+                </TextBox.Style>
+                <TextBox.ContextMenu>
+                    <ContextMenu Visibility="Collapsed" />
+                </TextBox.ContextMenu>
+            </TextBox>
+        </Grid>
+        <Button Grid.Row="1" Background="Transparent" HorizontalAlignment="Right" x:Name="Cancelbutton" Click="Cancelbutton_Click" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Grid.Column="2" Margin="0,4,5,0">
+            <Button.Template>
+                <ControlTemplate>
+                    <Border HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Image Source="Images/delete.gif" Height="20" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
+
+        <TreeView VirtualizingStackPanel.IsVirtualizing="True" VirtualizingStackPanel.VirtualizationMode="Recycling" ScrollViewer.IsDeferredScrollingEnabled="False" Name="TreeViewImport" Grid.Row="2" ItemsSource="{Binding}" ItemContainerStyle="{StaticResource TreeViewItemStyleMultiSelect}" ItemTemplate="{StaticResource TreeViewCheckBoxDataTemplate}" Grid.ColumnSpan="2" Margin="10,5,10,0" ContextMenuOpening="TreeViewImport_ContextMenuOpening">
+            <TreeView.ContextMenu>
+                <ContextMenu >
+                    <MenuItem Name="Contextascending" Header="Sort by ascending" Click="Ascending_Click_Name" />
+                    <MenuItem Name="Contextdescending" Header="Sort by descending"  Click="Descending_Click_Name" />
+                </ContextMenu>
+            </TreeView.ContextMenu>
+        </TreeView>
+        <Button  Grid.Row="3" Content="Import" IsDefault="False" Height="24" HorizontalAlignment="Right" Name="Import_Ok" VerticalAlignment="Center" Width="75" Click="Import_Click"  Foreground="White" Focusable="False" Margin="280,7,10,9"  Style="{StaticResource ButtonStyle3}" Grid.ColumnSpan="2" />
+        <!--<Button Name="AbortImport" Height="24" Width="75" Margin="0,-2,80,0" Style="{StaticResource ButtonStyle3}" Content="Abort" Grid.Row="3" Grid.Column="1" Click="AbortClick"  Foreground="White" Focusable="False"/>-->
+        <TextBlock Text="Zoom" Foreground="White" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Margin="12,13,0,0"/>
+        <Slider Name="RunnerSlider" Height="40" Width="100" HorizontalAlignment="Left" Grid.Row="3" Grid.Column="0" Margin="52,10,0,0" Minimum="1" Maximum="2" IsMoveToPointEnabled="True"/>
+        <ProgressBar Style="{StaticResource CustomProgressBarStyle}" Name="ProgressUpdate" Height="20" Minimum="{Binding Min,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Maximum="{Binding Max,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Value="{Binding Progressvalue,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsIndeterminate="False"  BorderBrush="Black" BorderThickness="1" Grid.Row="3" Margin="161,9,111,11" Grid.ColumnSpan="2"/>
+        <TextBlock Name="TextUpdate" Text="{Binding Percentage,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" Foreground="#FF405579" FontWeight="DemiBold"  Width="auto" Height="auto" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Consolas" Grid.Row="3" Grid.ColumnSpan="2" Margin="55,0,10,0" />
+    </Grid>
+</Window>

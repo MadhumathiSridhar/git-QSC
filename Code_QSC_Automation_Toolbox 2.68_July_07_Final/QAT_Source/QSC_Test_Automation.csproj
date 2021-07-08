@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C03D454A-BFF8-4C58-B64D-023A8A3F26B9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>QSC_Test_Automation</RootNamespace>
+    <AssemblyName>QSC_Test_Automation</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Final_QAT_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AudioPrecision.API, Version=4.1.0.0, Culture=neutral, PublicKeyToken=756ddf07b6e97975, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Audio Precision\APx500 4.1\API\AudioPrecision.API.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="LibCecSharp">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Pulse-Eight\USB-CEC Adapter\x64\LibCecSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>.\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.TaskScheduler">
+      <HintPath>..\..\..\cec code executionv1\QAT_Source\bin\Release\Microsoft.Win32.TaskScheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="Renci.SshNet">
+      <HintPath>\\guru\sharing\Madhu\Renci.SshNet.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="zxing, Version=0.15.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>\\guru\sharing\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>\\guru\sharing\net45\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="CBMItems.cs" />
+    <Compile Include="CecSharpClient.cs" />
+    <Compile Include="ContinousBackgroundMonitoring.xaml.cs">
+      <DependentUpon>ContinousBackgroundMonitoring.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CopyReplace.xaml.cs">
+      <DependentUpon>CopyReplace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core_DateAndTime.xaml.cs">
+      <DependentUpon>Core_DateAndTime.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Crc32.cs" />
+    <Compile Include="DeviceDiscovery.cs" />
+    <Compile Include="DUT_DeviceItem.cs" />
+    <Compile Include="ExecutionLoop.xaml.cs">
+      <DependentUpon>ExecutionLoop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExecutionProcess.cs" />
+    <Compile Include="Export.xaml.cs">
+      <DependentUpon>Export.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Firmwareupgradation.cs" />
+    <Compile Include="GeneralItem.cs" />
+    <Compile Include="GetExecutionLoop.cs" />
+    <Compile Include="GrafanaDBConnection.cs" />
+    <Compile Include="GrafanaExecution.cs" />
+    <Compile Include="GrafanaGraph.xaml.cs">
+      <DependentUpon>GrafanaGraph.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Import.xaml.cs">
+      <DependentUpon>Import.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="logs.cs" />
+    <Compile Include="PoolPlus.xaml.cs" />
+    <Compile Include="QatMessageBox.xaml.cs">
+      <DependentUpon>QatMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QAToverview.xaml.cs" />
+    <Compile Include="QATProperties.xaml.cs" />
+    <Compile Include="QRCM_API.cs" />
+    <Compile Include="QRCM_Treeview.xaml.cs">
+      <DependentUpon>QRCM_Treeview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="QR_Reader.cs" />
+    <Compile Include="QSys_Designer_Comm.cs" />
+    <Compile Include="ReportDBConnection.cs" />
+    <Compile Include="Responsalyzer.cs" />
+    <Compile Include="Rpc.cs" />
+    <Compile Include="SelectServer.xaml.cs" />
+    <Compile Include="ServerDetails.xaml.cs">
+      <DependentUpon>ServerDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="shortcut_keys.xaml.cs">
+      <DependentUpon>shortcut_keys.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ssh.cs" />
+    <Compile Include="Telnet_Comm.cs" />
+    <Compile Include="TestActionItem.cs" />
+    <Compile Include="TestCaseItem.cs" />
+    <Compile Include="TestPlanItem.cs" />
+    <Compile Include="TestSuiteItem.cs" />
+    <Compile Include="Test_Execution.xaml.cs">
+      <DependentUpon>Test_Execution.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeViewExplorer.cs" />
+    <Compile Include="USBPlayBack\CoreAudioApi\EDeviceState.cs" />
+    <Compile Include="USBPlayBack\CoreAudioApi\Interfaces\Blob.cs" />
+    <Compile Include="USBPlayBack\CoreAudioApi\Interfaces\IMMDevice.cs" />
+    <Compile Include="USBPlayBack\CoreAudioApi\Interfaces\IPolicyConfig.cs" />
+    <Compile Include="USBPlayBack\CoreAudioApi\MMDevice.cs" />
+    <Compile Include="USBPlayBack\CoreAudioApi\PolicyKEY.cs" />
+    <Compile Include="USBPlayBack\EndPoints.cs" />
+    <Compile Include="USBPlayBack\Settings.cs" />
+    <Compile Include="USBPlayBack\USBMainPage.cs" />
+    <Page Include="ContinousBackgroundMonitoring.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CopyReplace.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Core_DateAndTime.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DUT_Configuration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Email_Report.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExecutionDelay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExecutionLoop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Export.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GrafanaGraph.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Import.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PoolPlus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Properties\DesignTimeResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+    <Page Include="QatMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="QAToverview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QATProperties.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="QRCM_Treeview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SelectServer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ServerDetails.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="shortcut_keys.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Splash_Screen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TabRename.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Test_Designer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DatatableValues.cs" />
+    <Compile Include="DBConnection.cs" />
+    <Compile Include="DUT_Configuration.xaml.cs">
+      <DependentUpon>DUT_Configuration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Email_Report.xaml.cs">
+      <DependentUpon>Email_Report.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExecutionDelay.xaml.cs">
+      <DependentUpon>ExecutionDelay.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Splash_Screen.xaml.cs">
+      <DependentUpon>Splash_Screen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TabRename.xaml.cs">
+      <DependentUpon>TabRename.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Test_Designer.xaml.cs">
+      <DependentUpon>Test_Designer.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Test_Execution.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="TreeViewDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Pause.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Play.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Stop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\search.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Jasmin_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\QSC logo5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\QSC logo1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\download.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\JI_Logo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\icon_Delay.ico" />
+    <Resource Include="Images\icon_Pause.ico" />
+    <Resource Include="Images\icon_Play.ico" />
+    <Resource Include="Images\icon_Stop.ico" />
+    <Resource Include="Images\Pause.png" />
+    <Resource Include="Images\Play.png" />
+    <Resource Include="Images\Stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\delete.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\AP.jpg" />
+    <Resource Include="Images\AP.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Failed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Progress.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\pass.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Incomplete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Final_QAT_Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\copy.png" />
+    <Resource Include="Images\move-down.png" />
+    <Resource Include="Images\move-up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\myadd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\double-left.png" />
+    <Resource Include="Images\double-right.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Final_QAT_Icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\BackgroundFailure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\backGround.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\down.png" />
+    <Resource Include="Images\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="cec.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Images\doubleup.png" />
+    <Resource Include="Images\doubledown.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
